@@ -1,15 +1,14 @@
 import React from 'react';
-
+import { NavBar } from '../components/Navbar.jsx';
 
 export const Dashboard = () => {
 
     
     return (
         <> 
-            <div className="navigation"> 
-                {/* Add Navigation-Bar Component */}
-            </div>
+            <NavBar />
             <h1> Dashboard </h1>
+            
 
         </>
     )

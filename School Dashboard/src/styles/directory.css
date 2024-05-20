@@ -1,0 +1,148 @@
+.header {
+  height: 70px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  opacity: 0.98;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+}
+
+.navbar-title {
+  font-size: 30px;
+}
+
+.title-section {
+  display: flex;
+  margin-left: 20px;
+  align-items: center;
+}
+
+.header-logo {
+  height: 40px;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-right: 10px;
+}
+
+.right-section {
+  margin-right: 50px;
+  display: flex;
+  align-items: center;
+}
+
+.header-link {
+  text-decoration: none;
+  color: black;
+  font-size: 18px;
+  margin-right: 50px;
+}
+
+.header-link:hover {
+  color: rgb(19, 97, 19);
+}
+
+.header-link:active {
+  color: rgb(9, 75, 9);
+}
+
+.header-link-button {
+  background-color: #476730;
+  padding-left: 12px;
+  padding-right: 12px;
+  padding-top: 7px;
+  padding-bottom: 7px;
+  border-radius: 30px;
+  text-decoration: none;
+  color: black;
+  font-size: 18px;
+  margin-right: 50px;
+  color: #F9FAEF;
+}
+
+.header-link-button:hover {
+  background-color: #597b40;
+}
+
+.header-link-button:active {
+  background-color: #476730;
+}
+
+.directory-options {
+  position: absolute;
+  top: 50px;
+  z-index: 300;
+  background-color: #476730;
+  box-shadow: 2px 3px 10px rgba(0, 0, 0, 0.3);
+  width: 100px;
+  padding: 14px 8px 14px 10px;
+  border-radius: 6px;
+  opacity: 0;
+  transition: opacity 0.15s;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+}
+
+.directory-link {
+  height: 35px;
+  display: flex;
+  align-items: center;
+}
+
+.directory-link:hover .directory-options {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.directory-options:hover {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.options-container {
+  width: 100%;
+}
+
+.student-option {
+  width: 100%;
+  padding-bottom: 10px;
+  border-bottom: solid;
+}
+
+.teacher-option {
+  width: 100%;
+  padding-top: 10px;
+}
+
+.student-option,
+.teacher-option,
+.student-link,
+.teacher-link {
+  color: #F9FAEF;
+  text-decoration: none;
+}
+
+.student-link:hover,
+.teacher-link:hover {
+  color: rgb(212, 212, 212);
+}
+
+.student-link:active,
+.teacher-link:active {
+  color: rgb(180, 180, 180);
+}
+
+.directory-page {
+  margin-top: 80px;
+}
+
+.directory-title {
+  font-size: 23px;
+  margin-left: 80px;
+  padding-top: 25px;
+}

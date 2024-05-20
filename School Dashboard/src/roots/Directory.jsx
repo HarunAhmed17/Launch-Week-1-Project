@@ -3,10 +3,17 @@ import Navbar from '../ components/Navbar';
 
 export const Directory = () => {
   return (
-        <> 
-           <Navbar/>
+    <> 
+      <Navbar />
+      
+      <div className='directory-page'>
+        <div className='directory-title'>
+          Student Directory
+        </div>
+      </div>
+      
             
-        </>
+    </>
     )
     
 }

@@ -7,10 +7,8 @@ export const Home = () => {
     
     return (
         <> 
-        <div className='home'>
-            <Navbar/>
-        
-
+        <div  className='home'>
+           <Navbar/>
         </div>
         </>
     )

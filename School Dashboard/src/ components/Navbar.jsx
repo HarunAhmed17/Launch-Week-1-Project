@@ -1,15 +1,17 @@
 import React from 'react';
 import '../index.css';
 import { Link } from "react-router-dom";
-import {logo} from '../images/logo.png'
+import logo from '../images/logo.png'
 
 const Navbar = () => {
   return (
     <header className="header">
 
       <div className='left-section'>
-        <img className="header-logo" src={logo} alt="Logo" />
-        <div className='navbar-title'> Thomas Jefferson Elementary School </div>
+        <div className='title-section'>
+          <img className="header-logo" src={logo} alt="Logo" />
+          <div className='navbar-title'> Thomas Jefferson Elementary School </div>
+        </div>
       </div>
 
       <div className='right-section'>

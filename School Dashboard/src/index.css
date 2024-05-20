@@ -71,6 +71,7 @@ button:focus-visible {
 
 body{
   background-color: #F9FAEF;
+  padding-top: 70px;
 }
 
 .header {
@@ -120,4 +121,19 @@ body{
 
 .header-link:active {
   color: rgb(9, 75, 9);
+}
+
+.calendartitle{
+  font-size: 30px;
+}
+.calendar-navigation {
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 50px;
+}
+
+.navigation-item {
+  cursor: pointer;
+  margin-left: 10px;
+  font-size: 18px;
 }

@@ -4,7 +4,7 @@ import '../styles/directory.css';
 import { Link } from "react-router-dom";
 import logo from '../images/logo.png'
 
-const Navbar = () => {
+export const Navbar = () =>  {
   return (
     <header className="header">
 
@@ -44,5 +44,3 @@ const Navbar = () => {
     </header>
   )
 }
-
-export default Navbar

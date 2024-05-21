@@ -26,28 +26,17 @@ const columns = [
   },
 ];
 
-const rows = [
-  { id: 1, lastName: 'Snow', firstName: 'Jon', dob: '10/9/2000'},
-  { id: 2, lastName: 'Lannister', firstName: 'Cersei', dob: '10/9/2000' },
-  { id: 3, lastName: 'Lannister', firstName: 'Jaime', dob: '10/9/2000' },
-  { id: 4, lastName: 'Stark', firstName: 'Arya', dob: '10/9/2000' },
-  { id: 5, lastName: 'Targaryen', firstName: 'Daenerys', dob: null },
-  { id: 6, lastName: 'Melisandre', firstName: null, dob: '10/9/2000' },
-  { id: 7, lastName: 'Clifford', firstName: 'Ferrara', dob: '10/9/2000' },
-  { id: 8, lastName: 'Frances', firstName: 'Rossini', dob: '10/9/2000' },
-  { id: 9, lastName: 'Roxie', firstName: 'Harvey', dob: '10/9/2000' },
-  { id: 10, lastName: 'Snow', firstName: 'Jon', dob: '10/9/2000'},
-  { id: 11, lastName: 'Lannister', firstName: 'Cersei', dob: '10/9/2000' },
-  { id: 12, lastName: 'Lannister', firstName: 'Jaime', dob: '10/9/2000' },
-  { id: 13, lastName: 'Stark', firstName: 'Arya', dob: '10/9/2000' },
-  { id: 14, lastName: 'Targaryen', firstName: 'Daenerys', dob: null },
-  { id: 15, lastName: 'Melisandre', firstName: null, dob: '10/9/2000' },
-  { id: 16, lastName: 'Clifford', firstName: 'Ferrara', dob: '10/9/2000' },
-  { id: 17, lastName: 'Frances', firstName: 'Rossini', dob: '10/9/2000' },
-  { id: 18, lastName: 'Roxie', firstName: 'Harvey', dob: '10/9/2000' },
-];
-
-export const DataTable = () => {
+export const DataTable = ({ students }) => {
+  const rows = students.map(student => ({
+    id: student.id,
+    firstName: student.name.split(' ')[0], // Assuming the Name field contains the full name
+    lastName: student.name.split(' ')[1] || '', // Splitting into first and last name
+    dob: student.dob,
+    classes: student.classes,
+  }));
+  
+  
+  
   return (
     <div style={{ height: 575, width: '90%' }} className='datatable'>
       <DataGrid

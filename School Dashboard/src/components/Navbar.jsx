@@ -4,7 +4,7 @@ import '../styles/directory.css';
 import { Link } from "react-router-dom";
 import logo from '../images/logo.png'
 
-export const Navbar = () =>  {
+export const Navbar = () =>{
   return (
     <header className="header">
 

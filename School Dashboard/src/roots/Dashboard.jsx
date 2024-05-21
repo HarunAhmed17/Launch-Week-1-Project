@@ -1,13 +1,13 @@
 import React from 'react';
-import { NavBar } from '../components/Navbar';
+import Navbar from '../ components/Navbar';
 
 export const Dashboard = () => {
 
     
     return (
         <> 
-            <NavBar />
-            <h1> Dashboard </h1>
+        <Navbar/>
+                    <h1> Dashboard </h1>
             
 
         </>

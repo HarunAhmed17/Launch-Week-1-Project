@@ -1,5 +1,6 @@
 import React from 'react';
 import '../index.css';
+import '../styles/directory.css';
 import { Link } from "react-router-dom";
 import logo from '../images/logo.png'
 
@@ -17,7 +18,23 @@ const Navbar = () => {
       <div className='right-section'>
         <Link className='header-link' to={'/'}>Home</Link>
         <Link className='header-link' to={'/dashboard'}>Dashboard</Link>
-        <Link className='header-link' to={'/directory'}>Directory</Link>
+        
+        <div className='directory-link'>
+          <Link className='header-link' to={'/directory'}>Directory</Link>
+          
+          <div className='directory-options'>
+            <div className='options-container'>
+              <div className='student-option'>
+                <Link className='student-link' to={'/directory'}>Student</Link>
+              </div>
+              <div className='teacher-option'>
+                <Link className='teacher-link' to={'/directory'}>Teacher</Link>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
         <Link className='header-link' to={'/calendar'}>Calendar</Link>
 
         <Link className='header-link-button' to={'/login'}>Log-in</Link>

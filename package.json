@@ -5,6 +5,10 @@
     "@mui/material": "^5.15.18",
     "@mui/styled-engine-sc": "^6.0.0-alpha.18",
     "@mui/x-data-grid": "^7.5.0",
-    "styled-components": "^6.1.11"
+    "styled-components": "^6.1.11",
+    "@fullcalendar/core": "^6.1.11",
+    "@fullcalendar/react": "^6.1.11",
+    "@fullcalendar/timegrid": "^6.1.11",
+    "react-router-dom": "^6.23.1"
   }
 }

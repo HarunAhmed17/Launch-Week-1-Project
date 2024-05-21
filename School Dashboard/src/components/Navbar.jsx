@@ -4,7 +4,8 @@ import '../styles/directory.css';
 import { Link } from "react-router-dom";
 import logo from '../images/logo.png'
 
-export const Navbar = () =>{
+export default function Navbar() {
+
   return (
     <header className="header">
 
@@ -36,7 +37,6 @@ export const Navbar = () =>{
         </div>
 
         <Link className='header-link' to={'/calendar'}>Calendar</Link>
-
         <Link className='header-link-button' to={'/login'}>Log-in</Link>
       </div>
       

@@ -146,3 +146,14 @@
   margin-left: 80px;
   padding-top: 25px;
 }
+
+/* DATATABLE */
+
+.datatable {
+  background-color: white;
+}
+
+.datatable-container {
+  margin-left: 80px;
+  margin-top: 30px;
+}

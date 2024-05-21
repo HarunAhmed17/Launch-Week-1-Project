@@ -98,7 +98,19 @@ body{
 
 .navbar-title {
   font-size: 30px;
-  padding-left: 30px;
+}
+
+.title-section {
+  display: flex;
+  margin-left: 20px;
+  align-items: center;
+}
+
+.header-logo {
+  height: 40px;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-right: 10px;
 }
 
 .right-section {
@@ -121,19 +133,4 @@ body{
 
 .header-link:active {
   color: rgb(9, 75, 9);
-}
-
-.calendartitle{
-  font-size: 30px;
-}
-.calendar-navigation {
-  display: flex;
-  justify-content: flex-end;
-  margin-right: 50px;
-}
-
-.navigation-item {
-  cursor: pointer;
-  margin-left: 10px;
-  font-size: 18px;
 }

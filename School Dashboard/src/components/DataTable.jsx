@@ -18,30 +18,39 @@ const columns = [
     sortable: false,
     width: 190,
   },
-    {
+  {
     field: 'classes',
-    headerName: 'Enrolled Classes',
+    headerName: 'Enrolled Classes', // Default column name
     sortable: false,
     width: 550,
   },
 ];
 
-export const DataTable = ({ students }) => {
-  const rows = students.map(student => ({
-    id: student.id,
-    firstName: student.name.split(' ')[0], // Assuming the Name field contains the full name
-    lastName: student.name.split(' ')[1] || '', // Splitting into first and last name
-    dob: student.dob,
-    classes: student.classes.join(', '), // Join classes with a comma and space
+export const DataTable = ({ isTeacher, group }) => {
+  // Modify columns based on whether it's a teacher or a student
+  const modifiedColumns = columns.map(column => {
+    if (column.field === 'classes') {
+      return {
+        ...column,
+        headerName: isTeacher ? 'Classes Taught' : 'Enrolled Classes',
+      };
+    }
+    return column;
+  });
+
+  const rows = group.map(entry => ({
+    id: entry.id,
+    firstName: entry.name.split(' ')[0],
+    lastName: entry.name.split(' ')[1] || '',
+    dob: entry.dob,
+    classes: entry.classes.join(', '),
   }));
-  
-  
-  
+
   return (
     <div style={{ height: 575, width: '90%' }} className='datatable'>
       <DataGrid
         rows={rows}
-        columns={columns}
+        columns={modifiedColumns}
         initialState={{
           pagination: {
             paginationModel: { page: 0, pageSize: 10 },
@@ -52,4 +61,4 @@ export const DataTable = ({ students }) => {
       />
     </div>
   );
-}
+};

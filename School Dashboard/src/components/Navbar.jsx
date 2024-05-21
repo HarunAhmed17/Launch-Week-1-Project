@@ -21,15 +21,15 @@ export const Navbar = () => {
         <Link className='header-link' to={'/dashboard'}>Dashboard</Link>
         
         <div className='directory-link'>
-          <Link className='header-link' to={'/directory'}>Directory</Link>
+          <div className='header-link'>Directory</div>
           
           <div className='directory-options'>
             <div className='options-container'>
               <div className='student-option'>
-                <Link className='student-link' to={'/directory'}>Student</Link>
+                <Link className='student-link' to={'/student-directory'}>Student</Link>
               </div>
               <div className='teacher-option'>
-                <Link className='teacher-link' to={'/directory'}>Teacher</Link>
+                <Link className='teacher-link' to={'/teacher-directory'}>Teacher</Link>
               </div>
             </div>
           </div>

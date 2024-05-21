@@ -4,17 +4,16 @@ import { DataTable } from '../components/DataTable';
 import { db } from "../firebase.js";
 import { getDocs, collection, query } from "firebase/firestore";
 
-export const Directory = () => {
-  const [students, setStudents] = useState([]);
+export const TeacherDirectory = () => {
+  const [teachers, setTeachers ] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const querySnapshot = await getDocs(query(collection(db, 'students')));
-        console.log("Query Snapshot:", querySnapshot); // Log the query snapshot
-        const fetchedStudents = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-        setStudents(fetchedStudents);
-        console.log("Fetched Students:", fetchedStudents); // Log the fetched students
+        const querySnapshot = await getDocs(query(collection(db, 'teachers')));
+        const fetchedTeachers = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+        setTeachers(fetchedTeachers);
+        console.log("Fetched Teahcers:", fetchedTeachers); // Log the fetched students
       } catch (error) {
         console.error("Error fetching documents: ", error);
       }
@@ -29,10 +28,10 @@ export const Directory = () => {
       <Navbar />
       <div className='directory-page'>
         <div className='directory-title'>
-          Student Directory
+          Teacher Directory
         </div>
         <div className='datatable-container'>
-          <DataTable group={students} isTeacher={false} />
+          <DataTable group={teachers} isTeacher={true} />
         </div>
       </div>
     </>

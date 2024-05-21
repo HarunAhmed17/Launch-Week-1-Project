@@ -1,6 +1,6 @@
 import { React } from 'react';
 import Navbar from '../components/Navbar';
-
+import { DataTable } from '../components/DataTable';
 
 
 export const Directory = () => {

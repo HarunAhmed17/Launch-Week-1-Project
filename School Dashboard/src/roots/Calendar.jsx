@@ -4,6 +4,8 @@ import { Calendar as FullCalendar } from '@fullcalendar/core';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import FullCalendarComponent from '@fullcalendar/react';
 
+//  npm install --save @fullcalendar/core @fullcalendar/react @fullcalendar/timegrid
+
 
 export const Calendar = () => {
     const calendarRef = useRef(null);
@@ -40,12 +42,6 @@ export const Calendar = () => {
                     left: 'prev,next',
                     center: 'title',
                     right: 'timeGridWeek,timeGridDay'
-                }}
-                views={{
-                    timeGridFourDay: {
-                        type: 'timeGrid',
-                        duration: { days: 4 }
-                    }
                 }}
             />
         </div>

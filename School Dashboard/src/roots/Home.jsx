@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import React from 'react';
 import '../styles/home.css'
-import Navbar from '../ components/Navbar';
+import Navbar from '../components/Navbar';
 import logo from '../images/logo.png'
 import collaboration from '../images/collaboration.jpg'
 import curiosity from '../images/curiosity.jpg'

@@ -36,7 +36,6 @@ export const Navbar = () =>{
         </div>
 
         <Link className='header-link' to={'/calendar'}>Calendar</Link>
-
         <Link className='header-link-button' to={'/login'}>Log-in</Link>
       </div>
       

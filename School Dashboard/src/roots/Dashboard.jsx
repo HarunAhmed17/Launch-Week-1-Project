@@ -6,8 +6,8 @@ export const Dashboard = () => {
     
     return (
         <> 
-            <NavBar />
-            <h1> Dashboard </h1>
+        <Navbar/>
+                    <h1> Dashboard </h1>
             
 
         </>

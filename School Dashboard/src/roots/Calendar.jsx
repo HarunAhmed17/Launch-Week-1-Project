@@ -1,5 +1,5 @@
 import { React, useState, useRef, useEffect } from 'react';
-import Navbar from '../ components/Navbar';
+import { Navbar } from '../components/Navbar';
 import { Calendar as FullCalendar } from '@fullcalendar/core';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import FullCalendarComponent from '@fullcalendar/react';
@@ -42,6 +42,12 @@ export const Calendar = () => {
                     left: 'prev,next',
                     center: 'title',
                     right: 'timeGridWeek,timeGridDay'
+                }}
+                views={{
+                    timeGridFourDay: {
+                        type: 'timeGrid',
+                        duration: { days: 4 }
+                    }
                 }}
             />
         </div>

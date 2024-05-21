@@ -32,7 +32,7 @@ export const DataTable = ({ students }) => {
     firstName: student.name.split(' ')[0], // Assuming the Name field contains the full name
     lastName: student.name.split(' ')[1] || '', // Splitting into first and last name
     dob: student.dob,
-    classes: student.classes,
+    classes: student.classes.join(', '), // Join classes with a comma and space
   }));
   
   

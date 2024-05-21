@@ -1,9 +1,10 @@
 import { React, useState, useRef, useEffect } from 'react';
 import { Navbar } from '../components/Navbar';
-
 import { Calendar as FullCalendar } from '@fullcalendar/core';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import FullCalendarComponent from '@fullcalendar/react';
+
+//  npm install --save @fullcalendar/core @fullcalendar/react @fullcalendar/timegrid
 
 
 export const Calendar = () => {

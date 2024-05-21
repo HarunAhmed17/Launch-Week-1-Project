@@ -19,7 +19,6 @@ const Navbar = () => {
         <Link className='header-link' to={'/dashboard'}>Dashboard</Link>
         <Link className='header-link' to={'/directory'}>Directory</Link>
         <Link className='header-link' to={'/calendar'}>Calendar</Link>
-
         <Link className='header-link-button' to={'/login'}>Log-in</Link>
       </div>
       

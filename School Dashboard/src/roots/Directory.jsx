@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import {Navbar} from '../components/Navbar';
 import { DataTable } from '../components/DataTable';
 import { db } from "../firebase.js";
-import { getDocs, collection, query } from "firebase/firestore";
+import { getDocs, collection, query, addDoc } from "firebase/firestore";
 
 export const Directory = () => {
   const [students, setStudents] = useState([]);
@@ -11,8 +11,7 @@ export const Directory = () => {
   const [dob, setDOB] = useState('');
   const [classes, setClasses] = useState('');
 
-  useEffect(() => {
-    const fetchData = async () => {
+  const fetchData = async () => {
       try {
         const querySnapshot = await getDocs(query(collection(db, 'students')));
         console.log("Query Snapshot:", querySnapshot); // Log the query snapshot
@@ -24,19 +23,38 @@ export const Directory = () => {
       }
     };
 
+  useEffect(() => {
     fetchData(); // Call the fetchData function once when the component mounts
   }, []);
 
   const handleAddClick = () => {
       setVisible(!visible);
   };
+  
+    const handleSubmit = async (e) => {
+      e.preventDefault();
+      // if (newResponse.trim() === '') return;
+      const classesArray = classes.split(',').map(cls => cls.trim());
 
-    const handleSubmit = () => {
-      setVisible(true);
-      setName('');
-      setClasses('');
-      setDOB('');
+      try {
+        const docRef = await addDoc(collection(db, "students"), {
+          name: name,
+          dob: dob,
+          classes: classesArray
+        });
+        console.log("Created doc with id: ", docRef.id);
+        
+        setVisible(true);
+        setName('');
+        setClasses('');
+        setDOB('');
+        fetchData();
+        
+      } catch (error) {
+        console.error("Error adding document: ", error);
+      }
   };
+
 
 
 
@@ -48,30 +66,33 @@ export const Directory = () => {
           <div>
           <div className='add-container'>
             {visible &&
-              <div className='add-inputs'>
-              <input
-                className='name-input'
-                type="text"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                placeholder="Full Name"
-              />
-              <input
-                className='name-input'
-                type="text"
-                value={dob}
-                onChange={(e) => setDOB(e.target.value)}
-                placeholder="Date of Birth"
-              />
-              <input
-                className='classes-input'
-                type="text"
-                value={classes}
-                onChange={(e) => setClasses(e.target.value)}
-                placeholder="Classes (comma separated)"
-              />
-              <button className='add-button' onClick={handleSubmit}>Submit</button>
-            </div>
+              <form onSubmit={handleSubmit}>
+                <div className='add-inputs'>
+                  <input
+                    className='name-input'
+                    type="text"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    placeholder="Full Name"
+                  />
+                  <input
+                    className='name-input'
+                    type="text"
+                    value={dob}
+                    onChange={(e) => setDOB(e.target.value)}
+                    placeholder="Date of Birth"
+                  />
+                  <input
+                    className='classes-input'
+                    type="text"
+                    value={classes}
+                    onChange={(e) => setClasses(e.target.value)}
+                    placeholder="Classes (comma separated)"
+                  />
+                  
+                  <button className='add-button' type="submit">Submit</button>
+                </div>
+              </form>
             }
             {
               !visible && <div className='add-inputs'></div>

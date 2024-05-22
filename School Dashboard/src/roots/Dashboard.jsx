@@ -2,28 +2,16 @@ import React, { useState, useEffect } from 'react';
 import {Navbar} from "../components/Navbar";
 import { db } from "../firebase.js";
 import "../styles/Dashboard.css";
-import { collection, getDocs, query } from "firebase/firestore";
+import { addDoc, collection, getDocs, query } from "firebase/firestore";
+import { Link } from "react-router-dom";
 
 export const Dashboard = () => {
 
     const [classes, setClasses] = useState([]);
     
-    // async function fetchFirestoreData() {
-    //     const querySnapshot = await getDocs(collection(db, "dashboard"));
-
-    //     const data = [];
-    //     querySnapshot.forEach((doc) => {
-    //         data.push({id: doc.id, ...doc.data()});
-    //     })
-    //     console.log(data);
-    //     return data;
-    // }
-    
     useEffect(() => {
         const fetchClasses = async () => {
             try {
-                // const data = await fetchFirestoreData();
-                // setClasses(data);
                 const querySnapshot = await getDocs(query(collection(db, "dashboard")));
                 console.log("Query Snapshot: ", querySnapshot);
                 // const fetchedClasses = [];
@@ -42,12 +30,17 @@ export const Dashboard = () => {
     return (
         <> 
             <Navbar />
-            <div> <h1> Dashboard </h1> </div>
+            <div className="title"> 
+                <h1> Dashboard </h1> 
+                <hr className="line" />
+            </div>
             <div className="classOutline"> 
                 {classes.map((dashboardClass) => (
-                    <div key={dashboardClass.id} className="dashboardClass"> 
-                        <h2> {dashboardClass.subject} </h2>
-                        <h4> {dashboardClass.semester} </h4>
+                    // add Link feature that wraps around this div so
+                    <div key={dashboardClass.id} className="dashboardClass" style={{'--box-color': dashboardClass.color}}> 
+                        <hr className="line" />
+                        <h5> {dashboardClass.subject} </h5>
+                        <h8> {dashboardClass.semester} </h8>
                     </div>
                 ))}
             

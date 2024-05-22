@@ -47,7 +47,7 @@ export const DataTable = ({ isTeacher, group }) => {
   }));
 
   return (
-    <div style={{ height: 575, width: '90%' }} className='datatable'>
+    <div style={{ height: 500, width: '90%' }} className='datatable'>
       <DataGrid
         rows={rows}
         columns={modifiedColumns}

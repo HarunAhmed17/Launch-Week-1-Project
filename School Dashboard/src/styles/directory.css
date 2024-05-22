@@ -50,7 +50,8 @@
   color: rgb(9, 75, 9);
 }
 
-.header-link-button {
+.header-link-button, 
+.add-button {
   background-color: #476730;
   padding-left: 12px;
   padding-right: 12px;
@@ -64,11 +65,13 @@
   color: #F9FAEF;
 }
 
-.header-link-button:hover {
+.header-link-button:hover, 
+.add-button:hover{
   background-color: #597b40;
 }
 
-.header-link-button:active {
+.header-link-button:active,
+.add-button:active {
   background-color: #476730;
 }
 
@@ -145,6 +148,46 @@
   font-size: 23px;
   margin-left: 80px;
   padding-top: 5px;
+  margin-bottom: 20px;
+}
+
+.add-button {
+  border: none;
+  height: 40px;
+}
+
+.add-button-hidden{
+  display: none;
+}
+
+.add-container {
+  margin-left: 80px;
+  margin-right: 90px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.add-inputs {
+  display: flex;
+  justify-content: space-between;
+  min-width: 800px;
+  opacity: 1;
+}
+
+.add-inputs-hidden {
+  opacity: 0;
+}
+
+.name-input,
+.classes-input {
+  border-radius: 10px;
+  border-width: 1px;
+  border-color: black;
+  padding-left: 10px;
+}
+
+.classes-input {
+  width: 250px;
 }
 
 /* DATATABLE */

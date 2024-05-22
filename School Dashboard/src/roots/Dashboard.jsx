@@ -1,37 +1,41 @@
-import { React, useState, useEffect } from 'react';
-import Navbar from "../components/Navbar";
-import { db } from "../firebase";
+import React, { useState, useEffect } from 'react';
+import {Navbar} from "../components/Navbar";
+import { db } from "../firebase.js";
 import "../styles/Dashboard.css";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, query } from "firebase/firestore";
 
 export const Dashboard = () => {
 
     const [classes, setClasses] = useState([]);
     
+    // async function fetchFirestoreData() {
+    //     const querySnapshot = await getDocs(collection(db, "dashboard"));
+
+    //     const data = [];
+    //     querySnapshot.forEach((doc) => {
+    //         data.push({id: doc.id, ...doc.data()});
+    //     })
+    //     console.log(data);
+    //     return data;
+    // }
+    
     useEffect(() => {
-        
         const fetchClasses = async () => {
             try {
+                // const data = await fetchFirestoreData();
+                // setClasses(data);
                 const querySnapshot = await getDocs(query(collection(db, "dashboard")));
-                console.log(querySnapshot);
-                const fetchedClasses = querySnapshot.docs.map(doc => ({id: doc.id(), ...doc.data()}));
+                console.log("Query Snapshot: ", querySnapshot);
+                // const fetchedClasses = [];
+                const fetchedClasses = querySnapshot.docs.map(doc => ({id: doc.id, ...doc.data()}));
                 setClasses(fetchedClasses);
-                console.log(fetchedClasses);
-                // console.log(querySnapshot.size);
-                if (querySnapshot.empty) {
-                    console.log("No documents found");
-                } else {
-                    querySnapshot.forEach((doc) => {
-                        console.log(doc.id, " => ", doc.data());
-                    });
-                }
+                console.log("Fetched Classes: ", fetchedClasses);
+                console.log("Size (expected 7): ", querySnapshot.size);
             } catch (error) {
                 console.error("Error fetching documents: ", error);
             }
         };
-        
         fetchClasses();
-        
     }, [])
 
 
@@ -41,7 +45,7 @@ export const Dashboard = () => {
             <div> <h1> Dashboard </h1> </div>
             <div className="classOutline"> 
                 {classes.map((dashboardClass) => (
-                    <div className="dashboardClass"> 
+                    <div key={dashboardClass.id} className="dashboardClass"> 
                         <h2> {dashboardClass.subject} </h2>
                         <h4> {dashboardClass.semester} </h4>
                     </div>

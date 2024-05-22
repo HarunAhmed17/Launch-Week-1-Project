@@ -1,29 +1,49 @@
 import { React, useState, useEffect } from 'react';
-import { NavBar } from '../ components/Navbar';
+import Navbar from "../components/Navbar";
 import { db } from "../firebase";
 import "../styles/Dashboard.css";
-// import { addDoc, collection } from "firebase/firestore";
+import { collection, getDocs } from "firebase/firestore";
 
 export const Dashboard = () => {
 
     const [classes, setClasses] = useState([]);
     
     useEffect(() => {
-        db.collection("dashboard").onSnapshot(snapshot => {
-            setClasses(snapshot.docs.map(doc => doc.data()));
-        })
+        
+        const fetchClasses = async () => {
+            try {
+                const querySnapshot = await getDocs(query(collection(db, "dashboard")));
+                console.log(querySnapshot);
+                const fetchedClasses = querySnapshot.docs.map(doc => ({id: doc.id(), ...doc.data()}));
+                setClasses(fetchedClasses);
+                console.log(fetchedClasses);
+                // console.log(querySnapshot.size);
+                if (querySnapshot.empty) {
+                    console.log("No documents found");
+                } else {
+                    querySnapshot.forEach((doc) => {
+                        console.log(doc.id, " => ", doc.data());
+                    });
+                }
+            } catch (error) {
+                console.error("Error fetching documents: ", error);
+            }
+        };
+        
+        fetchClasses();
+        
     }, [])
 
 
     return (
         <> 
-            <NavBar />
-            <h1> Dashboard </h1>
+            <Navbar />
+            <div> <h1> Dashboard </h1> </div>
             <div className="classOutline"> 
                 {classes.map((dashboardClass) => (
                     <div className="dashboardClass"> 
-                        {dashboardClass.subject}
-                        {dashboardClass.semester}
+                        <h2> {dashboardClass.subject} </h2>
+                        <h4> {dashboardClass.semester} </h4>
                     </div>
                 ))}
             

@@ -98,7 +98,7 @@ export const TeacherDirectory = () => {
             }
             
             {visible && <button className='add-button' onClick={handleAddClick}>Cancel Add</button>}
-            {!visible && <button className='add-button' onClick={handleAddClick}>+ Add Student</button>}
+            {!visible && <button className='add-button' onClick={handleAddClick}>+ Add Teacher</button>}
           </div>
         </div>
         

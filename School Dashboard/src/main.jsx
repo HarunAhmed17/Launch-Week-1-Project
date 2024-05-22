@@ -5,11 +5,10 @@ import './index.css'
 
 import { createBrowserRouter, RouterProvider, } from "react-router-dom";
 import { Home } from './roots/Home.jsx';
-import { Directory as StudentDirectory } from './roots/Directory.jsx';
+import { Directory } from './roots/Directory.jsx';
 import { Dashboard } from './roots/Dashboard.jsx';
 import { Class } from './roots/Class.jsx';
 import { Calendar } from './roots/Calendar.jsx';
-import { TeacherDirectory } from './roots/TeacherDirectory.jsx';
 
 const router = createBrowserRouter([
   {
@@ -18,11 +17,11 @@ const router = createBrowserRouter([
   },
   {
     path: "/student-directory",
-    element: <StudentDirectory />
+    element: <Directory isTeacher={ false } />
   },
   {
     path: "/teacher-directory",
-    element: <TeacherDirectory />
+    element: <Directory isTeacher={ true } />
   },
   {
     path: "/dashboard",

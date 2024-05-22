@@ -69,3 +69,12 @@ body{
 .header-link:active {
   color: rgb(9, 75, 9);
 }
+
+
+
+.calendarcomponent{
+  padding-top: 15px; /* an override! */
+  padding-bottom: 15px; /* an override! */
+  padding-right: 15px;
+  padding-left: 15px;
+}

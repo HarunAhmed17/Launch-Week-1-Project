@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import { React, useState, useEffect } from 'react';
 import {Navbar} from "../components/Navbar";
-import { db } from "../firebase.js";
+import { db } from "../firebase";
 import "../styles/Dashboard.css";
 import { collection, getDocs, query } from "firebase/firestore";
 

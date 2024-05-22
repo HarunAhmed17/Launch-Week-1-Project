@@ -70,6 +70,22 @@ body{
   color: rgb(9, 75, 9);
 }
 
+/* MATERIAL UI FIXES */
+
+.MuiTablePagination-selectLabel {
+  margin-bottom: 0;
+}
+
+.MuiTablePagination-selectLabel {
+  margin-bottom: 0px;
+  /* Set your desired margin-bottom value */
+}
+
+.MuiTablePagination-displayedRows {
+  margin-bottom: 0px;
+}
+
+
 
 
 .calendarcomponent{

@@ -8,6 +8,7 @@ export const Directory = ({ isTeacher }) => {
   const [data, setData] = useState([]);
   const [visible, setVisible] = useState(false);
   const [deleteVisible, setDeleteVisible] = useState(false);
+  const [updateVisible, setUpdateVisible] = useState(false);
   const [name, setName] = useState('');
   const [dob, setDOB] = useState('');
   const [id, setID] = useState('');
@@ -35,6 +36,10 @@ export const Directory = ({ isTeacher }) => {
 
   const handleDeleteClick = () => {
     setDeleteVisible(!deleteVisible);
+  };
+
+  const handleUpdateClick = () => {
+    setUpdateVisible(!updateVisible);
   };
 
   const handleSubmit = async (e) => {

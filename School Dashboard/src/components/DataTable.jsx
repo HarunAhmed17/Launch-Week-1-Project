@@ -4,7 +4,7 @@ import "../styles/directory.css"
 
 const columns = [
   {
-    field: 'sid',
+    field: 'id',
     headerName: 'Student ID', // Default column name
     width: 150,
   },
@@ -44,7 +44,7 @@ export const DataTable = ({ isTeacher, group }) => {
         };
       }
 
-      if (column.field === 'sid') {
+      if (column.field === 'id') {
         return {
           ...column,
           headerName: isTeacher ? 'Teacher ID' : 'Student ID',

@@ -6,8 +6,10 @@ import { getDocs, collection, query } from "firebase/firestore";
 
 export const Directory = () => {
   const [students, setStudents] = useState([]);
-  const [name, setName] = useState('');
   const [visible, setVisible] = useState(false);
+  const [name, setName] = useState('');
+  const [dob, setDOB] = useState('');
+  const [classes, setClasses] = useState('');
 
   useEffect(() => {
     const fetchData = async () => {
@@ -26,15 +28,14 @@ export const Directory = () => {
   }, []);
 
   const handleAddClick = () => {
-      console.log(visible);
       setVisible(!visible);
-      console.log(visible);
   };
 
     const handleSubmit = () => {
-      console.log(visible);
       setVisible(true);
-      console.log(visible);
+      setName('');
+      setClasses('');
+      setDOB('');
   };
 
 
@@ -53,20 +54,20 @@ export const Directory = () => {
                 type="text"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                placeholder="Name"
+                placeholder="Full Name"
               />
               <input
                 className='name-input'
                 type="text"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
+                value={dob}
+                onChange={(e) => setDOB(e.target.value)}
                 placeholder="Date of Birth"
               />
               <input
                 className='classes-input'
                 type="text"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
+                value={classes}
+                onChange={(e) => setClasses(e.target.value)}
                 placeholder="Classes (comma separated)"
               />
               <button className='add-button' onClick={handleSubmit}>Submit</button>

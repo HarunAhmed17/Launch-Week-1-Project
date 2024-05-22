@@ -4,7 +4,8 @@ import '../styles/directory.css';
 import { Link } from "react-router-dom";
 import logo from '../images/logo.png'
 
-export const Navbar = () =>{
+export const Navbar = () => {
+
   return (
     <header className="header">
 
@@ -20,15 +21,15 @@ export const Navbar = () =>{
         <Link className='header-link' to={'/dashboard'}>Dashboard</Link>
         
         <div className='directory-link'>
-          <Link className='header-link' to={'/directory'}>Directory</Link>
+          <div className='header-link'>Directory</div>
           
           <div className='directory-options'>
             <div className='options-container'>
               <div className='student-option'>
-                <Link className='student-link' to={'/directory'}>Student</Link>
+                <Link className='student-link' to={'/student-directory'}>Student</Link>
               </div>
               <div className='teacher-option'>
-                <Link className='teacher-link' to={'/directory'}>Teacher</Link>
+                <Link className='teacher-link' to={'/teacher-directory'}>Teacher</Link>
               </div>
             </div>
           </div>
@@ -36,7 +37,6 @@ export const Navbar = () =>{
         </div>
 
         <Link className='header-link' to={'/calendar'}>Calendar</Link>
-
         <Link className='header-link-button' to={'/login'}>Log-in</Link>
       </div>
       

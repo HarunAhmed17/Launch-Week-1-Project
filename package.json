@@ -1,5 +1,15 @@
 {
   "dependencies": {
-    "@fullcalendar/timegrid": "^6.1.11"
+    "@emotion/react": "^11.11.4",
+    "@emotion/styled": "^11.11.5",
+    "@fullcalendar/core": "^6.1.11",
+    "@fullcalendar/react": "^6.1.11",
+    "@fullcalendar/timegrid": "^6.1.11",
+    "@mui/material": "^5.15.18",
+    "@mui/styled-engine-sc": "^6.0.0-alpha.18",
+    "@mui/x-data-grid": "^7.5.0",
+    "firebase": "^10.12.1",
+    "react-router-dom": "^6.23.1",
+    "styled-components": "^6.1.11"
   }
 }

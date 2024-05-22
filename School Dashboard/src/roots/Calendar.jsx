@@ -1,11 +1,10 @@
 import { React, useState, useRef, useEffect } from 'react';
 import { Navbar } from '../components/Navbar';
+
 import { Calendar as FullCalendar } from '@fullcalendar/core';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import FullCalendarComponent from '@fullcalendar/react';
-
-//  npm install --save @fullcalendar/core @fullcalendar/react @fullcalendar/timegrid
-
+import dayGridPlugin from '@fullcalendar/daygrid';
 
 export const Calendar = () => {
     const calendarRef = useRef(null);
@@ -36,19 +35,16 @@ export const Calendar = () => {
             <h1>Calendar</h1>
             <FullCalendarComponent
                 ref={calendarRef}
-                plugins={[timeGridPlugin]}
-                initialView="timeGridWeek"
+                plugins={[dayGridPlugin]}
+                initialView="dayGridMonth"
                 headerToolbar={{
-                    left: 'prev,next',
                     center: 'title',
-                    right: 'timeGridWeek,timeGridDay'
                 }}
-                views={{
-                    timeGridFourDay: {
-                        type: 'timeGrid',
-                        duration: { days: 4 }
-                    }
-                }}
+                events={[
+                    { title: 'event 1', date: '2024-05-13' , slotDuration:'02:00'},
+                    { title: 'event 2', date: '2024-05-15' }
+                  ]}
+
             />
         </div>
     );

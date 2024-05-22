@@ -3,6 +3,11 @@ import { DataGrid } from '@mui/x-data-grid';
 import "../styles/directory.css"
 
 const columns = [
+  {
+    field: 'sid',
+    headerName: 'Student ID', // Default column name
+    width: 150,
+  },
   { field: 'firstName', headerName: 'First name', width: 130 },
   { field: 'lastName', headerName: 'Last name', width: 130 },
   {
@@ -23,7 +28,7 @@ const columns = [
     field: 'classes',
     headerName: 'Enrolled Classes', // Default column name
     sortable: false,
-    width: 550,
+    width: 400,
   },
 ];
 
@@ -44,6 +49,7 @@ export const DataTable = ({ isTeacher, group }) => {
     firstName: entry.name.split(' ')[0],
     lastName: entry.name.split(' ')[1] || '',
     dob: entry.dob,
+    sid: entry.sid,
     classes: entry.classes.join(', '),
   }));
 

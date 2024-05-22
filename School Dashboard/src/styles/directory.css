@@ -170,7 +170,7 @@
 .add-inputs {
   display: flex;
   justify-content: space-between;
-  min-width: 800px;
+  min-width: 1000px;
   opacity: 1;
 }
 

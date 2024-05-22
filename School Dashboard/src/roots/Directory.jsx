@@ -2,13 +2,14 @@ import React, { useState, useEffect } from 'react';
 import {Navbar} from '../components/Navbar';
 import { DataTable } from '../components/DataTable';
 import { db } from "../firebase.js";
-import { getDocs, collection, query, addDoc } from "firebase/firestore";
+import { getDocs, collection, query, addDoc, getCountFromServer } from "firebase/firestore";
 
 export const Directory = () => {
   const [students, setStudents] = useState([]);
   const [visible, setVisible] = useState(false);
   const [name, setName] = useState('');
   const [dob, setDOB] = useState('');
+  const [sid, setSID] = useState('');
   const [classes, setClasses] = useState('');
 
   const fetchData = async () => {
@@ -21,11 +22,12 @@ export const Directory = () => {
       } catch (error) {
         console.error("Error fetching documents: ", error);
       }
-    };
+  };
 
   useEffect(() => {
-    fetchData(); // Call the fetchData function once when the component mounts
+    fetchData();
   }, []);
+
 
   const handleAddClick = () => {
       setVisible(!visible);
@@ -40,7 +42,8 @@ export const Directory = () => {
         const docRef = await addDoc(collection(db, "students"), {
           name: name,
           dob: dob,
-          classes: classesArray
+          classes: classesArray,
+          sid: sid
         });
         console.log("Created doc with id: ", docRef.id);
         
@@ -48,6 +51,7 @@ export const Directory = () => {
         setName('');
         setClasses('');
         setDOB('');
+        setSID('');
         fetchData();
         
       } catch (error) {
@@ -74,6 +78,13 @@ export const Directory = () => {
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     placeholder="Full Name"
+                  />
+                  <input
+                    className='name-input'
+                    type="text"
+                    value={sid}
+                    onChange={(e) => setSID(e.target.value)}
+                    placeholder="Student ID"
                   />
                   <input
                     className='name-input'

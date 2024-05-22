@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { DataGrid } from '@mui/x-data-grid';
+import "../styles/directory.css"
 
 const columns = [
   { field: 'firstName', headerName: 'First name', width: 130 },

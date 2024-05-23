@@ -10,11 +10,15 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@emotion/react": "^11.11.4",
+    "@emotion/styled": "^11.11.5",
     "@fullcalendar/common": "^5.11.5",
     "@fullcalendar/core": "^6.1.11",
     "@fullcalendar/react": "^6.1.11",
     "@fullcalendar/timegrid": "^6.1.11",
-    "dotenv": "^16.4.5",
+    "@mui/material": "^5.15.18",
+    "@mui/x-data-grid": "^7.5.1",
+    "@popperjs/core": "^2.11.8",
     "firebase": "^10.12.1",
     "fullcalendar": "^6.1.11",
     "react": "^18.3.1",

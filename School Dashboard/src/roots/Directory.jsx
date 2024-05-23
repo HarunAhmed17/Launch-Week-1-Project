@@ -54,6 +54,12 @@ export const Directory = ({ isTeacher }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!name || !dob || !id || !classes) {
+      alert('Please fill in all fields before submitting.');
+      return;
+    }
+
     const classesArray = classes.split(',').map(cls => cls.trim());
 
     try {
@@ -78,6 +84,11 @@ export const Directory = ({ isTeacher }) => {
   const handleDelete = async (e) => {
     e.preventDefault();
 
+    if (!idToDelete) {
+      alert('Please fill in all fields to delete.');
+      return;
+    }
+
     try {
       const collectionName = isTeacher ? 'teachers' : 'students';
       const q = query(collection(db, collectionName), where('id', '==', idToDelete));
@@ -99,6 +110,11 @@ export const Directory = ({ isTeacher }) => {
   const handleUpdateSubmit = async (e) => {
     e.preventDefault();
     const classesArray = updateClasses.split(',').map(cls => cls.trim());
+
+    if (!updateName || !updateDOB || !updateID || !updateClasses) {
+      alert('Please fill in all fields before submitting.');
+      return;
+    }
 
     try {
       const collectionName = isTeacher ? 'teachers' : 'students';

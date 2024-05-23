@@ -66,27 +66,25 @@ export const Dashboard = () => {
     return (
         <>
             <Navbar />
-            <div className="title">
+             <div className="title">
                 <h1> Dashboard </h1>
                 <hr className="line" />
             </div>
-            {/* form should be outside the main classOutline div */}
-            <div class="form"> 
-                    <form className="addClassForm" onSubmit={handleSubmit}> 
+             <div className="form"> 
+                     <form className="addClassForm" onSubmit={handleSubmit}> 
                         <Button color="success" variant="contained" type="submit"> Add Class </Button>
-                        <br/>
+                        <br/> 
                         <label> Subject: </label>
-                        <TextField id="outlined-basic" lable="Outlined" variant="outlined" 
-                        onChange={(e) => setSubject(e.target.value)} />
-                        <br/>
+                         <TextField id="outlined-basic" label="text" variant="outlined" 
+                        onChange={(e) => setSubject(e.target.value)}></TextField>
+                        <br/> 
                         <label> Semester: </label>
-                        <TextField id="outlined-basic" lable="Outlined" variant="outlined" 
-                        onChange={(e) => setSemester(e.target.value)} />
+                        <TextField id="outlined-basic" label="text" variant="outlined" 
+                        onChange={(e) => setSemester(e.target.value)}></TextField>
                         <br/>
                         <label> Color: </label>
-                        <TextField id="outlined-basic" lable="Outlined" variant="outlined"
-                        onChange={(e) => setColor(e.target.value)} />
-                        <br/> 
+                        <TextField id="outlined-basic" label="text" variant="outlined"
+                        onChange={(e) => setColor(e.target.value)}></TextField>
                     </form>
             </div>
             <div className="classOutline">

@@ -16,9 +16,6 @@ export const Dashboard = () => {
     const [semester, setSemester] = useState("");
     const [color, setColor] = useState("");
 
-    // variable representing id to delete for removeClass
-    const [idToRemove, setIdToRemove] = useState("");
-
     const fetchClasses = async () => {
         try {
             const querySnapshot = await getDocs(query(collection(db, "dashboard")));
@@ -34,6 +31,7 @@ export const Dashboard = () => {
     };
 
     useEffect(() => {
+        document.title = "Dashboard";
         fetchClasses();
     }, [])
 
@@ -75,15 +73,15 @@ export const Dashboard = () => {
                         <Button color="success" variant="contained" type="submit"> Add Class </Button>
                         <br/> 
                         <label> Subject: </label>
-                         <TextField id="outlined-basic" label="text" variant="outlined" 
+                         <TextField size="small" id="outlined-basic" label="text" variant="outlined" 
                         onChange={(e) => setSubject(e.target.value)}></TextField>
                         <br/> 
                         <label> Semester: </label>
-                        <TextField id="outlined-basic" label="text" variant="outlined" 
+                        <TextField size="small" id="outlined-basic" label="text" variant="outlined" 
                         onChange={(e) => setSemester(e.target.value)}></TextField>
                         <br/>
                         <label> Color: </label>
-                        <TextField id="outlined-basic" label="text" variant="outlined"
+                        <TextField size="small" id="outlined-basic" label="text" variant="outlined"
                         onChange={(e) => setColor(e.target.value)}></TextField>
                     </form>
             </div>
@@ -93,8 +91,8 @@ export const Dashboard = () => {
                         <Link key={dashboardClass.subject} to={`/class/${dashboardClass.subject}`}>
                             {console.log(typeof dashboardClass.subject)}
                             <hr className="line" />
-                            <h4> {dashboardClass.subject} </h4>
-                            <h6> {dashboardClass.semester} </h6>
+                            <h4 style={{color: dashboardClass.color}}> {dashboardClass.subject} </h4>
+                            <h6 style={{color: dashboardClass.color}}> {dashboardClass.semester} </h6>
                         </Link>
                         <Button size="small" color="success" variant="outlined" type="submit"
                         onClick={(e) => {

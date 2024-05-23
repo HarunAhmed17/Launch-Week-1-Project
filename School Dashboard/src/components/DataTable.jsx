@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { DataGrid } from '@mui/x-data-grid';
+import {DataGrid} from '@mui/x-data-grid';
 import "../styles/directory.css"
 
 const columns = [
@@ -33,7 +33,7 @@ const columns = [
 ];
 
 
-export const DataTable = ({ isTeacher, group }) => {
+const DataTable = ({ isTeacher, group }) => {
     
     // Modify columns based on whether it's a teacher or a student
     const modifiedColumns = columns.map(column => {
@@ -77,3 +77,5 @@ export const DataTable = ({ isTeacher, group }) => {
       </div>
     );
   };
+
+  export default DataTable;

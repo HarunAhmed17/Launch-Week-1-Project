@@ -16,7 +16,7 @@ export const Navbar = () => {
     <header className="header">
       <div className="title-section">
         <img className="header-logo" src={logo} alt="Logo" />
-        <div className="navbar-title">Thomas Jefferson Elementary School</div>
+        <div className="navbar-title"><h2> Thomas Jefferson</h2> </div>
       </div>
 
       <div className="right-section">

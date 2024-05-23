@@ -210,7 +210,7 @@ export const Directory = ({ isTeacher }) => {
       <div className='directory-page'>
         <div className='directory-title'>{isTeacher ? 'Teacher Directory' : 'Student Directory'}</div>
 
-        <div>
+        <div className='inputs-container'>
           <div className='add-container'>
             {visible &&
               <form onSubmit={handleSubmit}>

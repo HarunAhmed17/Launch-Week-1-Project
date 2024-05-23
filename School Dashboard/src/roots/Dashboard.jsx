@@ -30,9 +30,11 @@ export const Dashboard = () => {
         }
     };
 
+
     useEffect(() => {
         document.title = "Dashboard";
         fetchClasses();
+        document.title = 'Dashboard';
     }, [])
 
 

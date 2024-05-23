@@ -55,7 +55,7 @@ export const Directory = ({ isTeacher }) => {
   useEffect(() => {
     fetchData();
     clearData();
-    document.title = isTeacher ? "Teacher ID" : "Student ID" + 'Directory';
+    document.title = isTeacher ? "Teacher " : "Student " + 'Directory';
   }, [isTeacher]);
 
   const handleAddClick = () => {

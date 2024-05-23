@@ -2,7 +2,7 @@ import { React, useState, useEffect } from 'react';
 import {Navbar} from "../components/Navbar";
 import { db } from "../firebase";
 import "../styles/Dashboard.css";
-import { addDoc, collection, getDocs, query } from "firebase/firestore";
+import { addDoc, collection, getDocs, query, deleteDoc, doc } from "firebase/firestore";
 import { Link } from "react-router-dom";
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
@@ -34,11 +34,15 @@ export const Dashboard = () => {
     useEffect(() => {
         document.title = "Dashboard";
         fetchClasses();
-        document.title = 'Dashboard';
     }, [])
 
 
     // functionality to delete Class
+    const removeClass = async (docId) => {
+        console.log("deleting doc with id: ", docId);
+        await deleteDoc(doc(db, "dashboard", docId));
+        fetchClasses();
+    }
 
     // functionality that adds class
     const handleSubmit = async (e) => {
@@ -97,26 +101,6 @@ export const Dashboard = () => {
                     </div>
                     
                 ))}
-            </div>
-            
-             <div className="form"> 
-                     <form className="addClassForm" onSubmit={handleSubmit}> 
-                        <label> Subject: </label>
-                         <TextField id="outlined-basic" label="outlined" variant="outlined" 
-                        onChange={(e) => setSubject(e.target.value)}></TextField>
-                        <br/>
-
-                        <label> Semester: </label>
-                        <TextField id="outlined-basic" label="outlined" variant="outlined" 
-                        onChange={(e) => setSemester(e.target.value)}></TextField>
-                        <br/>
-
-                        <label> Color: </label>
-                        <TextField id="outlined-basic" label="outlined" variant="outlined"
-                        onChange={(e) => setColor(e.target.value)}></TextField>
-
-                        <Button variant="contained" type="submit"> Add Class </Button>
-                    </form>
             </div>
         </>
     );

@@ -6,14 +6,18 @@ import { getDocs, collection, query, addDoc, deleteDoc, doc, updateDoc, where } 
 
 export const Directory = ({ isTeacher }) => {
   const [data, setData] = useState([]);
+
   const [visible, setVisible] = useState(false);
   const [deleteVisible, setDeleteVisible] = useState(false);
   const [updateVisible, setUpdateVisible] = useState(false);
+
   const [name, setName] = useState('');
   const [dob, setDOB] = useState('');
   const [id, setID] = useState('');
-  const [idToDelete, setIDToDelete] = useState('');
   const [classes, setClasses] = useState('');
+
+  const [idToDelete, setIDToDelete] = useState('');
+
   const [updateID, setUpdateID] = useState('');
   const [updateName, setUpdateName] = useState('');
   const [updateDOB, setUpdateDOB] = useState('');
@@ -52,10 +56,15 @@ export const Directory = ({ isTeacher }) => {
 
   const handleAddClick = () => {
     setVisible(!visible);
+    setName('');
+    setClasses('');
+    setDOB('');
+    setID('');
   };
 
   const handleDeleteClick = () => {
     setDeleteVisible(!deleteVisible);
+    setIDToDelete('');
   };
 
   const handleUpdateClick = (item) => {
@@ -101,30 +110,42 @@ export const Directory = ({ isTeacher }) => {
     e.preventDefault();
 
     if (!idToDelete) {
-      alert('Please fill in all fields to delete.');
+      alert('Please fill in all fields before submitting.');
+      return;
+    }
+
+    const numIdToDelete = Number(idToDelete);
+    if (isNaN(numIdToDelete)) {
+      alert('Please enter a valid number for the ID.');
       return;
     }
 
     try {
+      console.log("ID", numIdToDelete);
       const collectionName = isTeacher ? 'teachers' : 'students';
-      const q = query(collection(db, collectionName), where('id', '==', idToDelete));
+
+      const q = query(collection(db, collectionName), where('id', '==', numIdToDelete));
       const querySnapshot = await getDocs(q);
 
+      // Check if there is a matching document
       if (!querySnapshot.empty) {
         const docId = querySnapshot.docs[0].id;
+
         await deleteDoc(doc(db, collectionName, docId));
+
         fetchData();
         setIDToDelete('');
       } else {
-        console.log("No document found with ID:", idToDelete);
+        alert("No document found with ID: " + idToDelete);
       }
     } catch (error) {
-      console.error("Error deleting document: ", error);
+      alert("Error deleting document: "+ error);
     }
   };
 
   const handleUpdateSubmit = async (e) => {
     e.preventDefault();
+    
     const classesArray = updateClasses.split(',').map(cls => cls.trim());
 
     if (!updateName || !updateDOB || !updateID || !updateClasses) {
@@ -132,24 +153,42 @@ export const Directory = ({ isTeacher }) => {
       return;
     }
 
+    const numIdToUpdate = Number(updateID);
+    if (isNaN(numIdToUpdate)) {
+      alert('Please enter a valid number for the ID.');
+      return;
+    }
+
     try {
       const collectionName = isTeacher ? 'teachers' : 'students';
-      const docRef = doc(db, collectionName, updateID);
-      await updateDoc(docRef, {
-        name: updateName,
-        dob: updateDOB,
-        classes: classesArray
-      });
-      setUpdateVisible(false);
-      setUpdateID('');
-      setUpdateName('');
-      setUpdateDOB('');
-      setUpdateClasses('');
-      fetchData();
+      console.log("id" + numIdToUpdate)
+      const q = query(collection(db, collectionName), where('id', '==', numIdToUpdate));
+      const querySnapshot = await getDocs(q);
+
+      if (!querySnapshot.empty) {
+        const docId = querySnapshot.docs[0].id;
+        const docRef = doc(db, collectionName, docId); // Get a document reference
+        await updateDoc(docRef, {
+          name: updateName,
+          dob: updateDOB,
+          classes: classesArray
+        });
+
+        setUpdateVisible(false);
+        setUpdateID('');
+        setUpdateName('');
+        setUpdateDOB('');
+        setUpdateClasses('');
+        fetchData();
+      } else {
+        alert("No document found with ID: " + numIdToUpdate);
+      }
     } catch (error) {
-      console.error("Error updating document: ", error);
+      alert("Error updating document: " + error);
     }
   };
+
+
 
   return (
     <>
@@ -224,8 +263,8 @@ export const Directory = ({ isTeacher }) => {
                   <input
                     className='name-input'
                     type="text"
-                    value={id}
-                    onChange={(e) => setID(e.target.value)}
+                    value={updateID}
+                    onChange={(e) => setUpdateID(e.target.value)}
                     placeholder={isTeacher ? "Teacher ID" : "Student ID"}
                   />
                   <input
@@ -259,7 +298,7 @@ export const Directory = ({ isTeacher }) => {
               {updateVisible && <button className='add-button' onClick={() => handleUpdateClick()}>Cancel</button>}
               {!visible && !deleteVisible && !updateVisible && <button className='add-button' onClick={handleAddClick}>+ Add {isTeacher ? 'Teacher' : 'Student'}</button>}
               {!deleteVisible && !visible && !updateVisible && <button className='delete-button' onClick={handleDeleteClick}>- Delete {isTeacher ? 'Teacher' : 'Student'}</button>}
-              {!deleteVisible && !visible && !updateVisible && <button className='update-button' onClick={() => handleUpdateClick()}>^ Update {isTeacher ? 'Teacher' : 'Student'}</button>}
+              {!deleteVisible && !visible && !updateVisible && <button className='update-button' onClick={() => handleUpdateClick()}>^ Update {isTeacher ? 'Teacher' : 'Student'} by ID</button>}
             </div>
           </div>
         </div>

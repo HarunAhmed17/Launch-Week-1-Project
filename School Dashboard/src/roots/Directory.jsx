@@ -88,6 +88,7 @@ export const Directory = ({ isTeacher }) => {
       return;
     }
 
+    const numIdToAdd = Number(id);
     if (isNaN(id)) {
       toast.error('Please enter a valid number for id');
       // alert('Please enter a valid number for id');
@@ -102,7 +103,7 @@ export const Directory = ({ isTeacher }) => {
         name: name,
         dob: dob,
         classes: classesArray,
-        id: id
+        id: numIdToAdd
       });
       toast.success("Successfully Added");
       setVisible(false);
@@ -147,10 +148,10 @@ export const Directory = ({ isTeacher }) => {
         setIDToDelete('');
         toast.success("Successfully Deleted");
       } else {
-        alert("No document found with ID: " + idToDelete);
+        console.log("No document found with ID: " + idToDelete);
       }
     } catch (error) {
-      alert("Error deleting document: "+ error);
+      console.log("Error deleting document: "+ error);
     }
   };
 
@@ -193,10 +194,10 @@ export const Directory = ({ isTeacher }) => {
         fetchData();
         toast.success("Successfully Updated");
       } else {
-        alert("No document found with ID: " + numIdToUpdate);
+        console.log("No document found with ID: " + numIdToUpdate);
       }
     } catch (error) {
-      alert("Error updating document: " + error);
+      console.log("Error updating document: " + error);
     }
   };
 
@@ -244,7 +245,6 @@ export const Directory = ({ isTeacher }) => {
 
                   <button className='add-button' type="submit">Submit</button>
                 </div>
-                <ToastContainer />
               </form>
             }
 
@@ -260,7 +260,6 @@ export const Directory = ({ isTeacher }) => {
                   />
                   <button className='add-button' type="submit">Delete</button>
                 </div>
-                <ToastContainer />
               </form>
             }
 
@@ -298,7 +297,6 @@ export const Directory = ({ isTeacher }) => {
 
                   <button className='add-button' type="submit">Update</button>
                 </div>
-                <ToastContainer />
               </form>
             }
 
@@ -326,6 +324,7 @@ export const Directory = ({ isTeacher }) => {
           />
         </div>
       </div>
+      <ToastContainer />
     </>
   );
 };

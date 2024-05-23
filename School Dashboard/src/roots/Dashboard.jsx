@@ -4,8 +4,9 @@ import { db } from "../firebase";
 import "../styles/Dashboard.css";
 import { addDoc, collection, getDocs, query } from "firebase/firestore";
 import { Link } from "react-router-dom";
-import Button  from '@mui/material/Button';
-import  TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
+
 
 export const Dashboard = () => {
 
@@ -61,32 +62,32 @@ export const Dashboard = () => {
             </div>
             <div className="classOutline">
                 {classes.map((dashboardClass) => (
-                    <Link key={dashboardClass.subject} to={`/class/${dashboardClass.subject}`}>
-                        {console.log(typeof dashboardClass.subject)}
+                    // <Link key={dashboardClass.subject} to={`/class/${dashboardClass.subject}`}>
+                        // {console.log(typeof dashboardClass.subject)}
                         <div key={dashboardClass.id} className="dashboardClass" style={{'--box-color': dashboardClass.color}}> 
                             <hr className="line" />
-                            <h5> {dashboardClass.subject} </h5>
-                            <h8> {dashboardClass.semester} </h8>
+                            <h4> {dashboardClass.subject} </h4>
+                            <h6> {dashboardClass.semester} </h6>
                         </div>
-                    </Link>
+                    // </Link>
                 ))}
             </div>
             {/* form should be outside the main classOutline div */}
             <div class="form"> 
                     <form className="addClassForm" onSubmit={handleSubmit}> 
                         <label> Subject: </label>
-                        <TextField id="outlined-basic" lable="Outlined" variant="Outlined" 
-                        onChange={(e) => setSubject(e.target.value)}></TextField>
+                        <TextField id="outlined-basic" lable="Outlined" variant="outlined" 
+                        onChange={(e) => setSubject(e.target.value)} />
                         <br/>
 
                         <label> Semester: </label>
-                        <TextField id="outlined-basic" lable="Outlined" variant="Outlined" 
-                        onChange={(e) => setSemester(e.target.value)}></TextField>
+                        <TextField id="outlined-basic" lable="Outlined" variant="outlined" 
+                        onChange={(e) => setSemester(e.target.value)} />
                         <br/>
 
                         <label> Color: </label>
-                        <TextField id="outlined-basic" lable="Outlined" variant="Outlined"
-                        onChange={(e) => setColor(e.target.value)}></TextField>
+                        <TextField id="outlined-basic" lable="Outlined" variant="outlined"
+                        onChange={(e) => setColor(e.target.value)} />
 
                         <Button variant="Contained" type="submit"> Add Class </Button>
                     </form>

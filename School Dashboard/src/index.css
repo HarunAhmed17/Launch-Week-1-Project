@@ -87,10 +87,3 @@ body{
 
 
 
-
-.calendarcomponent{
-  padding-top: 15px; /* an override! */
-  padding-bottom: 15px; /* an override! */
-  padding-right: 15px;
-  padding-left: 15px;
-}

@@ -33,6 +33,7 @@
     overflow:hidden;
 }
 
+/* to add color to upper half of box */
 .dashboardClass::before {
     content:"";
     position:absolute;
@@ -43,5 +44,7 @@
     background-color: var(--box-color, #476730);
     z-index:-1;
 }
+
+/* add styling for form below: focus on making it go to the right of the website first */
 
 

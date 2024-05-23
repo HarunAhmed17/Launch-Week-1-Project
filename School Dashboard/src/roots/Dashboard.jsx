@@ -2,7 +2,7 @@ import { React, useState, useEffect } from 'react';
 import {Navbar} from "../components/Navbar";
 import { db } from "../firebase";
 import "../styles/Dashboard.css";
-import { doc, addDoc, collection, getDocs, query } from "firebase/firestore";
+import { addDoc, collection, getDocs, query } from "firebase/firestore";
 import { Link } from "react-router-dom";
 import Button  from '@mui/material/Button';
 import  TextField from '@mui/material/TextField';
@@ -14,7 +14,7 @@ export const Dashboard = () => {
     const [subject, setSubject] = useState("");
     const [semester, setSemester] = useState("");
     const [color, setColor] = useState("");
-    
+
     const fetchClasses = async () => {
         try {
             const querySnapshot = await getDocs(query(collection(db, "dashboard")));
@@ -28,12 +28,12 @@ export const Dashboard = () => {
             console.error("Error fetching documents: ", error);
         }
     };
-    
+
     useEffect(() => {
         fetchClasses();
     }, [])
 
-    
+
     // functionality to delete Class
 
     // functionality that adds class
@@ -52,24 +52,27 @@ export const Dashboard = () => {
         fetchClasses();
     }
 
-
     return (
-        <> 
+        <>
             <Navbar />
-            <div className="title"> 
-                <h1> Dashboard </h1> 
+            <div className="title">
+                <h1> Dashboard </h1>
                 <hr className="line" />
             </div>
-            <div className="classOutline"> 
+            <div className="classOutline">
                 {classes.map((dashboardClass) => (
-                    // add Link feature to link to class that wraps around this div
-                    <div key={dashboardClass.id} className="dashboardClass" style={{'--box-color': dashboardClass.color}}> 
-                        <hr className="line" />
-                        <h5> {dashboardClass.subject} </h5>
-                        <h8> {dashboardClass.semester} </h8>
-                    </div>
+                    <Link key={dashboardClass.subject} to={`/class/${dashboardClass.subject}`}>
+                        {console.log(typeof dashboardClass.subject)}
+                        <div key={dashboardClass.id} className="dashboardClass" style={{'--box-color': dashboardClass.color}}> 
+                            <hr className="line" />
+                            <h5> {dashboardClass.subject} </h5>
+                            <h8> {dashboardClass.semester} </h8>
+                        </div>
+                    </Link>
                 ))}
-                <div class="form"> 
+            </div>
+            {/* form should be outside the main classOutline div */}
+            <div class="form"> 
                     <form className="addClassForm" onSubmit={handleSubmit}> 
                         <label> Subject: </label>
                         <TextField id="outlined-basic" lable="Outlined" variant="Outlined" 
@@ -87,16 +90,7 @@ export const Dashboard = () => {
 
                         <Button variant="Contained" type="submit"> Add Class </Button>
                     </form>
-                </div>
-                   
-               
-                
-                
-            
             </div>
-
         </>
-    )
-
-}
-
+    );
+};

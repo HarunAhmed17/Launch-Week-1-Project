@@ -8,24 +8,47 @@ import { Link } from "react-router-dom";
 export const Dashboard = () => {
 
     const [classes, setClasses] = useState([]);
-    
+    // data for entering in fields
+    const [subject, setSubject] = useState("");
+    const [semester, setSemester] = useState("");
+    const [color, setColor] = useState("");
+
+    const fetchClasses = async () => {
+        try {
+            const querySnapshot = await getDocs(query(collection(db, "dashboard")));
+            console.log("Query Snapshot: ", querySnapshot);
+            // const fetchedClasses = [];
+            const fetchedClasses = querySnapshot.docs.map(doc => ({id: doc.id, ...doc.data()}));
+            setClasses(fetchedClasses);
+            console.log("Fetched Classes: ", fetchedClasses);
+            console.log("Size (expected 7): ", querySnapshot.size);
+        } catch (error) {
+            console.error("Error fetching documents: ", error);
+        }
+    };
+
     useEffect(() => {
-        const fetchClasses = async () => {
-            try {
-                const querySnapshot = await getDocs(query(collection(db, "dashboard")));
-                console.log("Query Snapshot: ", querySnapshot);
-                // const fetchedClasses = [];
-                const fetchedClasses = querySnapshot.docs.map(doc => ({id: doc.id, ...doc.data()}));
-                setClasses(fetchedClasses);
-                // console.log("Fetched Classes: ", fetchedClasses);
-                // console.log("Size (expected 7): ", querySnapshot.size);
-            } catch (error) {
-                console.error("Error fetching documents: ", error);
-            }
-        };
         fetchClasses();
     }, [])
 
+
+    // functionality to delete Class
+
+    // functionality that adds class
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const docRef = await addDoc(collection(db, "dashboard"), {
+            subject: subject,
+            semester: semester,
+            color: color
+        });
+        console.log("created new doc with id: ", docRef.id);
+        setSubject("");
+        setSemester("");
+        setColor("");
+        // add fetchClasses(); --> so that it shows up immediately after form is submitted
+        fetchClasses();
+    }
 
     return (
         <>

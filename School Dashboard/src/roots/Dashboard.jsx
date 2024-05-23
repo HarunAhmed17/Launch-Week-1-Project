@@ -62,14 +62,18 @@ export const Dashboard = () => {
             </div>
             <div className="classOutline"> 
                 {classes.map((dashboardClass) => (
-                    // add Link feature to link to class that wraps around this div
-                    <div key={dashboardClass.id} className="dashboardClass" style={{'--box-color': dashboardClass.color}}> 
-                        <hr className="line" />
-                        <h5> {dashboardClass.subject} </h5>
-                        <h8> {dashboardClass.semester} </h8>
-                    </div>
+                    <Link key={dashboardClass.subject} to={`/class/${dashboardClass.subject}`}>
+                        {console.log(typeof dashboardClass.subject)}
+                        <div key={dashboardClass.id} className="dashboardClass" style={{'--box-color': dashboardClass.color}}> 
+                            <hr className="line" />
+                            <h5> {dashboardClass.subject} </h5>
+                            <h8> {dashboardClass.semester} </h8>
+                        </div>
+                    </Link>
                 ))}
-                <div class="form"> 
+            </div>
+            {/* form should be outside the main classOutline div */}
+            <div class="form"> 
                     <form className="addClassForm" onSubmit={handleSubmit}> 
                         <label> Subject: </label>
                         <TextField id="outlined-basic" lable="Outlined" variant="Outlined" 
@@ -87,12 +91,6 @@ export const Dashboard = () => {
 
                         <Button variant="Contained" type="submit"> Add Class </Button>
                     </form>
-                </div>
-                   
-               
-                
-                
-            
             </div>
 
         </>

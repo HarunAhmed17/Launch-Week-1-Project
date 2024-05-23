@@ -69,7 +69,7 @@ export const Dashboard = () => {
                             <h5> {dashboardClass.subject} </h5>
                             <h6> {dashboardClass.semester} </h6>
                         </div>
-                    // </Link>
+                     </Link>
                 ))}
             </div>
             

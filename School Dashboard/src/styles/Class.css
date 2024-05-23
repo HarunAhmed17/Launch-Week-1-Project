@@ -1,0 +1,52 @@
+/* Class.css */
+.class-container {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    margin: 20px auto;
+}
+
+.class-header {
+    text-align: center;
+    color: #333;
+}
+
+.class-details {
+    margin: 20px 0;
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.class-details h3, .class-details p {
+    margin: 10px 0;
+    color: #555;
+}
+
+.students-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.students-table th, .students-table td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
+}
+
+.students-table th {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.students-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.students-table tr:hover {
+    background-color: #ddd;
+}

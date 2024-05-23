@@ -17,8 +17,8 @@ export const Dashboard = () => {
                 // const fetchedClasses = [];
                 const fetchedClasses = querySnapshot.docs.map(doc => ({id: doc.id, ...doc.data()}));
                 setClasses(fetchedClasses);
-                console.log("Fetched Classes: ", fetchedClasses);
-                console.log("Size (expected 7): ", querySnapshot.size);
+                // console.log("Fetched Classes: ", fetchedClasses);
+                // console.log("Size (expected 7): ", querySnapshot.size);
             } catch (error) {
                 console.error("Error fetching documents: ", error);
             }
@@ -28,26 +28,24 @@ export const Dashboard = () => {
 
 
     return (
-        <> 
+        <>
             <Navbar />
-            <div className="title"> 
-                <h1> Dashboard </h1> 
+            <div className="title">
+                <h1> Dashboard </h1>
                 <hr className="line" />
             </div>
-            <div className="classOutline"> 
+            <div className="classOutline">
                 {classes.map((dashboardClass) => (
-                    // add Link feature that wraps around this div so
-                    <div key={dashboardClass.id} className="dashboardClass" style={{'--box-color': dashboardClass.color}}> 
-                        <hr className="line" />
-                        <h5> {dashboardClass.subject} </h5>
-                        <h8> {dashboardClass.semester} </h8>
-                    </div>
+                    <Link key={dashboardClass.subject} to={`/class/${dashboardClass.subject}`}>
+                        {console.log(typeof dashboardClass.subject)}
+                        <div className="dashboardClass" style={{ '--box-color': dashboardClass.color }}>
+                            <hr className="line" />
+                            <h5>{dashboardClass.subject}</h5>
+                            <h6>{dashboardClass.semester}</h6>
+                        </div>
+                    </Link>
                 ))}
-            
             </div>
-
         </>
-    )
-
-}
-
+    );
+};

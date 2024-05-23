@@ -173,7 +173,23 @@ export const Calendar = () => {
         setisEnterEventVisible(!isEnterEventVisible);
         setIsButtonVisible(false);
     }
-
+    const handleDeleteClick = (info) => {
+        const event = info.event;
+        if (window.confirm(`Are you sure you want to delete the event: ${event.title}?`)) {
+            deleteEvent(event.id);
+        }
+    };
+    
+    const deleteEvent = async (eventId) => {
+        try {
+            await db.collection("events").doc(eventId).delete();
+            alert('Event has been deleted.');
+            fetchData(); // Refresh the list of events
+        } catch (error) {
+            console.error("Error removing document: ", error);
+            alert('Failed to delete the event.');
+        }
+    };
     const generateTimeSlots = () => {
         const slots = [];
         for (let hour = 0; hour < 24; hour++) {
@@ -192,9 +208,11 @@ export const Calendar = () => {
     return (
         <div>
             <Navbar />
+
             <h1>Calendar</h1>
+
+
             {isButtonVisible && (<button onClick={handleEnterEventClick} id='EventButtonClick'>Enter An Event</button>)}
-                
                 {isEnterEventVisible && (<div>
                 <form onSubmit={handleSubmit}>
 
@@ -244,7 +262,13 @@ export const Calendar = () => {
                 <button type="submit">Update Calendar</button>
                 </form>
                 </div>)}
-            
+
+
+            {/* <button>Delete Event</button>
+                 */}
+
+
+
             <div className='calendarcomponent'>
             <FullCalendarComponent
                 ref={calendarRef}
@@ -260,11 +284,8 @@ export const Calendar = () => {
                     start: '',
                     center: 'title',
                 }}
-                
-         //       dateClick={handleDateClick}
                 events={allData}
-                  //eventDidMount={events}
-                  selectable = {true}
+                selectable = {true}
 
             />
             </div>

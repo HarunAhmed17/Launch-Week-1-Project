@@ -39,6 +39,7 @@ export const Class = () => {
             }
         };
         fetchClassData();
+        document.title = classId;
     }, [classId]);
 
     if (!classData) return <div>Loading...</div>;

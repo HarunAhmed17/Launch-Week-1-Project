@@ -227,3 +227,20 @@
 .MuiDataGrid-main {
   padding-left: 10px;
 }
+
+@media (max-width: 700px) {
+  .button-container {
+    flex-direction: column;
+  }
+
+  .add-button,
+  .delete-button,
+  .update-button {
+    margin: 5px 0;
+    margin-left: 0px;
+    /* Optional: Add margin to create space between buttons when stacked */
+  }
+  .add-button {
+    margin-right: 5px;
+  }
+}

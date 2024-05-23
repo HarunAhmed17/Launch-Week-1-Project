@@ -7,7 +7,7 @@
 .title-logo {
     display: flex; 
     flex-direction: row;
-    margin-top: 25vh;
+    margin-top: 20vh;
     align-self: center;
 }
 
@@ -91,5 +91,31 @@ h2 {
     margin-top: 70px;
 }
 
+@media (max-width: 480px) {
+    .large-logo {
+        width: auto;
+        height: 150px;
+        margin: auto;
+    }
 
+    .main-title h1{
+        font-size: 40px;
+        /* margin-top: -200px; */
+    }
+
+    .main-title h2{
+        font-size: 20px;
+        margin: auto;
+        margin-bottom: 10px;
+    }
+
+    .title-logo {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        margin: auto;
+    }
+}
 

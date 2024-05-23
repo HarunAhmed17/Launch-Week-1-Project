@@ -4,8 +4,8 @@ import { db } from "../firebase";
 import "../styles/Dashboard.css";
 import { doc, addDoc, collection, getDocs, query } from "firebase/firestore";
 import { Link } from "react-router-dom";
-import { Button } from '@mui/material/Button';
-import { TextField } from '@mui/material/TextField';
+import Button  from '@mui/material/Button';
+import  TextField from '@mui/material/TextField';
 
 export const Dashboard = () => {
 

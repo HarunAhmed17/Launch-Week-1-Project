@@ -6,6 +6,7 @@ import './index.css';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { Home } from './roots/Home.jsx';
 import { Directory } from './roots/Directory.jsx';
+import { NonAdminDirectory } from './roots/NonAdminDirectory.jsx';
 import { Dashboard } from './roots/Dashboard.jsx';
 import { Class } from './roots/Class.jsx';
 import { Calendar } from './roots/Calendar.jsx';
@@ -16,12 +17,20 @@ const router = createBrowserRouter([
     element: <Home />,
   },
   {
-    path: '/student-directory',
+    path: '/student-directory-admin',
     element: <Directory isTeacher={false} />,
   },
   {
-    path: '/teacher-directory',
+    path: '/teacher-directory-admin',
     element: <Directory isTeacher={true} />,
+  },
+  {
+    path: '/student-directory',
+    element: <NonAdminDirectory isTeacher={false} />,
+  },
+  {
+    path: '/teacher-directory',
+    element: <NonAdminDirectory isTeacher={true} />,
   },
   {
     path: '/dashboard',

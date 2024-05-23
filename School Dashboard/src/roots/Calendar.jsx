@@ -1,13 +1,14 @@
-import { React, useState, useRef, useEffect } from 'react';
+import { React, useState, useRef, useEffect, Component } from 'react';
 import { Navbar } from '../components/Navbar';
 
 import { Calendar as FullCalendar } from '@fullcalendar/core';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import FullCalendarComponent from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
+import Button  from '@mui/material/Button';
 
 import { db } from '../firebase.js';
-import { getDocs, collection, query } from "firebase/firestore";
+import { getDocs, collection, query , addDoc } from "firebase/firestore";
 
 
 
@@ -20,11 +21,31 @@ export const Calendar = () => {
     const [endDate, setEndDate] = useState('');
     const [event, setEvent] = useState('');
     const [isAllDay, setIsAllDay] = useState('');
+    const [endTime, setEndTime] = useState('');
+    const [startTime, setStartTime] = useState('');
     const [allData, setAllData] = useState([]);
+    
 
     // const handleDateClick = (arg) => {
     //     alert(arg.dateStr)
     //   }
+
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const docRef = await addDoc(collection(db, "events"), {
+            Event: event,
+            BeginningDate: startDate,
+            EndDate: endDate,
+            StartTime: startTime,
+            EndTime: endTime,
+            AllDay: isAllDay,   
+        });
+        console.log("created doc with id: ", docRef.id);
+        fetchData();
+    };
+
+
 
     const fetchData = async () => {
         let temp = [];
@@ -60,10 +81,39 @@ export const Calendar = () => {
         }
         fetchData();
     } ,[]);
+
+
     return (
         <div>
             <Navbar />
             <h1>Calendar</h1>
+            <form onSubmit={handleSubmit}>
+
+                <label>Event Name: </label>
+                <input type="text" onChange={(e) =>setEvent(e.target.value)}></input>
+                <br></br>
+
+                <label>Start Date: </label>
+                <input type="text" onChange={(e) =>setEvent(e.target.value)}></input>
+                <br></br>
+
+                {/* Same Day? */}
+
+                <label>End Date: </label>
+                <input type="text" onChange={(e) =>setEvent(e.target.value)}></input>
+                <br></br>
+                
+                {/* All Day? */}
+                <label>Start Time: </label>
+                <input type="text" onChange={(e) =>setEvent(e.target.value)}></input>
+                <br></br>
+                
+                <label>End Time: </label>
+                <input type="text" onChange={(e) =>setEvent(e.target.value)}></input>
+                <br></br>
+                
+                <button type="submit">Update Calendar</button>
+            </form>
             <div className='calendarcomponent'>
             <FullCalendarComponent
                 ref={calendarRef}

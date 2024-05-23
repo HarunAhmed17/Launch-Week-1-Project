@@ -10,7 +10,7 @@ import excellence from '../images/excellence.jpg'
 export const Home = () => {
     
     return (
-        <> 
+        <>
         <div className='home'>
            <Navbar/>
            <div className='title-logo'>

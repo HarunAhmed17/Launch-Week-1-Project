@@ -66,13 +66,15 @@
 
 .header-link-button:hover, 
 .add-button:hover,
-.delete-button:hover{
+.delete-button:hover,
+.update-button:hover{
   background-color: #597b40;
 }
 
 .header-link-button:active,
 .add-button:active,
-.delete-button:active {
+.delete-button:active,
+.update-button:active {
   background-color: #476730;
 }
 
@@ -151,12 +153,14 @@
   padding-top: 5px;
   margin-bottom: 20px;
 }
+
 .button-container {
   display: block;
 }
 
 .add-button,
-.delete-button {
+.delete-button,
+.update-button {
   border: none;
   background-color: #476730;
   padding-left: 10px;
@@ -170,7 +174,8 @@
   color: #F9FAEF;
 }
 
-.delete-button {
+.delete-button,
+.update-button {
   margin-left: 10px;
 }
 

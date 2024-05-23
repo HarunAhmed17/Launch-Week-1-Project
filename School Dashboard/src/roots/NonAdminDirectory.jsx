@@ -26,6 +26,7 @@ export const NonAdminDirectory = ({ isTeacher }) => {
 
   useEffect(() => {
     fetchData();
+    document.title = isTeacher ? "Teacher Directory" : "Student " + 'Directory';
   }, [isTeacher]);
 
   return (

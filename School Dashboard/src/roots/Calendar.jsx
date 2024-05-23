@@ -143,6 +143,7 @@ export const Calendar = () => {
             calendarApi.gotoDate(date);
         }
         fetchData();
+        document.title = "Calendar";
     } ,[]);
 
     const handleDateClick = (info) => {

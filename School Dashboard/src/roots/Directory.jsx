@@ -4,6 +4,9 @@ import { DataTable } from '../components/DataTable';
 import { db } from "../firebase.js";
 import { getDocs, collection, query, addDoc, deleteDoc, doc, updateDoc, where } from "firebase/firestore";
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 export const Directory = ({ isTeacher }) => {
   const [data, setData] = useState([]);
 
@@ -81,7 +84,13 @@ export const Directory = ({ isTeacher }) => {
     e.preventDefault();
 
     if (!name || !dob || !id || !classes) {
-      alert('Please fill in all fields before submitting.');
+      toast.error('Please fill in all fields');
+      return;
+    }
+
+    if (isNaN(id)) {
+      toast.error('Please enter a valid number for id');
+      // alert('Please enter a valid number for id');
       return;
     }
 
@@ -95,6 +104,7 @@ export const Directory = ({ isTeacher }) => {
         classes: classesArray,
         id: id
       });
+      toast.success("Successfully Added");
       setVisible(false);
       setName('');
       setClasses('');
@@ -110,13 +120,13 @@ export const Directory = ({ isTeacher }) => {
     e.preventDefault();
 
     if (!idToDelete) {
-      alert('Please fill in all fields before submitting.');
+      toast.error('Please fill in all fields');
       return;
     }
 
     const numIdToDelete = Number(idToDelete);
     if (isNaN(numIdToDelete)) {
-      alert('Please enter a valid number for the ID.');
+      toast.error('Please enter a valid number for id');
       return;
     }
 
@@ -135,6 +145,7 @@ export const Directory = ({ isTeacher }) => {
 
         fetchData();
         setIDToDelete('');
+        toast.success("Successfully Deleted");
       } else {
         alert("No document found with ID: " + idToDelete);
       }
@@ -149,13 +160,13 @@ export const Directory = ({ isTeacher }) => {
     const classesArray = updateClasses.split(',').map(cls => cls.trim());
 
     if (!updateName || !updateDOB || !updateID || !updateClasses) {
-      alert('Please fill in all fields before updating.');
+      toast.error('Please fill in all fields');
       return;
     }
 
     const numIdToUpdate = Number(updateID);
     if (isNaN(numIdToUpdate)) {
-      alert('Please enter a valid number for the ID.');
+      toast.error('Please enter a valid number for the ID.');
       return;
     }
 
@@ -180,6 +191,7 @@ export const Directory = ({ isTeacher }) => {
         setUpdateDOB('');
         setUpdateClasses('');
         fetchData();
+        toast.success("Successfully Updated");
       } else {
         alert("No document found with ID: " + numIdToUpdate);
       }
@@ -232,6 +244,7 @@ export const Directory = ({ isTeacher }) => {
 
                   <button className='add-button' type="submit">Submit</button>
                 </div>
+                <ToastContainer />
               </form>
             }
 
@@ -247,6 +260,7 @@ export const Directory = ({ isTeacher }) => {
                   />
                   <button className='add-button' type="submit">Delete</button>
                 </div>
+                <ToastContainer />
               </form>
             }
 
@@ -284,6 +298,7 @@ export const Directory = ({ isTeacher }) => {
 
                   <button className='add-button' type="submit">Update</button>
                 </div>
+                <ToastContainer />
               </form>
             }
 

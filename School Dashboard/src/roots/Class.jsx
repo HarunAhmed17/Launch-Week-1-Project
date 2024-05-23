@@ -3,6 +3,7 @@ import { db } from "../firebase.js";
 import { doc, getDoc } from "firebase/firestore";
 import { useParams } from 'react-router-dom';
 import { Navbar } from '../components/Navbar';
+import '../styles/Class.css';
 
 export const Class = () => {
     const { classId } = useParams();
@@ -11,11 +12,10 @@ export const Class = () => {
     useEffect(() => {
         const fetchClassData = async () => {
             if (classId) {
-                console.log(typeof classId)
+                console.log(typeof classId);
                 const classDoc = await getDoc(doc(db, "classes", classId));
-                console.log("classId: "+classId);
+                console.log("classId: " + classId);
                 if (classDoc.exists()) {
-                    console.log("it works");
                     const data = classDoc.data();
                     const teacherDoc = await getDoc(doc(db, "teachers", data.teacher));
                     const teacherName = teacherDoc.exists() ? teacherDoc.data().name : "Unknown";
@@ -34,8 +34,7 @@ export const Class = () => {
                         students: students.filter(Boolean),
                     });
                 }
-            }
-            else{
+            } else {
                 console.log("hello");
             }
         };
@@ -47,21 +46,33 @@ export const Class = () => {
     return (
         <>
             <Navbar />
-            <h1>Welcome!</h1>
-            <div>
-                <h2>Class Details:</h2>
-                <h3>Class: {classData.name}</h3>
-                <p>Teacher: {classData.teacher}</p>
-                <p>Room: {classData.room}</p>
-                <p>Average Grade: {classData.avgGrade}</p>
-                <p>Schedule: {classData.schedule}</p>
+            <div className="class-container">
+                <h1 className="class-header">{classData.id}</h1>
+                <div className="class-details">
+                    <h2>Class Details:</h2>
+                    <p>Teacher: {classData.teacher}</p>
+                    <p>Room: {classData.room}</p>
+                    <p>Average Grade: {classData.avgGrade}</p>
+                    <p>Schedule: {classData.schedule}</p>
+                </div>
                 <div>
-                    <h4>Students:</h4>
-                    {classData.students.map((student) => (
-                        <div key={student.id} style={{ display: "flex", gap: "2rem", alignItems: "center" }}>
-                            <p>{student.name}</p>
-                        </div>
-                    ))}
+                    <h4>Class Roster:</h4>
+                    <table className="students-table">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Date of Birth</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {classData.students.map((student) => (
+                                <tr key={student.id}>
+                                    <td>{student.name}</td>
+                                    <td>{student.dob}</td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </>

@@ -56,40 +56,40 @@ export const Dashboard = () => {
     return (
         <>
             <Navbar />
-            <div className="title">
+             <div className="title">
                 <h1> Dashboard </h1>
-                <hr className="line" />
-            </div>
-            <div className="classOutline">
-                {classes.map((dashboardClass) => (
-                    // <Link key={dashboardClass.subject} to={`/class/${dashboardClass.subject}`}>
-                        // {console.log(typeof dashboardClass.subject)}
+                 <hr className="line" />
+             </div>
+              <div className="classOutline"> 
+                 {classes.map((dashboardClass) => (
+                    <Link key={dashboardClass.subject} to={`/class/${dashboardClass.subject}`}>
+                        {console.log(typeof dashboardClass.subject)}
                         <div key={dashboardClass.id} className="dashboardClass" style={{'--box-color': dashboardClass.color}}> 
                             <hr className="line" />
-                            <h4> {dashboardClass.subject} </h4>
+                            <h5> {dashboardClass.subject} </h5>
                             <h6> {dashboardClass.semester} </h6>
                         </div>
-                    // </Link>
+                     </Link>
                 ))}
             </div>
-            {/* form should be outside the main classOutline div */}
-            <div class="form"> 
-                    <form className="addClassForm" onSubmit={handleSubmit}> 
+            
+             <div className="form"> 
+                     <form className="addClassForm" onSubmit={handleSubmit}> 
                         <label> Subject: </label>
-                        <TextField id="outlined-basic" lable="Outlined" variant="outlined" 
-                        onChange={(e) => setSubject(e.target.value)} />
+                         <TextField id="outlined-basic" label="outlined" variant="outlined" 
+                        onChange={(e) => setSubject(e.target.value)}></TextField>
                         <br/>
 
                         <label> Semester: </label>
-                        <TextField id="outlined-basic" lable="Outlined" variant="outlined" 
-                        onChange={(e) => setSemester(e.target.value)} />
+                        <TextField id="outlined-basic" label="outlined" variant="outlined" 
+                        onChange={(e) => setSemester(e.target.value)}></TextField>
                         <br/>
 
                         <label> Color: </label>
-                        <TextField id="outlined-basic" lable="Outlined" variant="outlined"
-                        onChange={(e) => setColor(e.target.value)} />
+                        <TextField id="outlined-basic" label="outlined" variant="outlined"
+                        onChange={(e) => setColor(e.target.value)}></TextField>
 
-                        <Button variant="Contained" type="submit"> Add Class </Button>
+                        <Button variant="contained" type="submit"> Add Class </Button>
                     </form>
             </div>
         </>

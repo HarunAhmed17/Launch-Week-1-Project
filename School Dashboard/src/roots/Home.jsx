@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import React from 'react';
 import '../styles/home.css'
 import { Navbar } from '../components/Navbar';
@@ -8,6 +8,11 @@ import curiosity from '../images/curiosity.jpg'
 import excellence from '../images/excellence.jpg'
 
 export const Home = () => {
+
+    
+  useEffect(() => {
+    document.title = 'Home';
+  }, []);
     
     return (
         <>

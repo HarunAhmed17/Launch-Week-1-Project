@@ -59,6 +59,7 @@ export const Calendar = () => {
             calendarApi.gotoDate(date);
         }
         fetchData();
+        document.title = "Calendar";
     } ,[]);
     return (
         <div>

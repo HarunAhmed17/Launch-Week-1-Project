@@ -30,8 +30,24 @@ export const Directory = ({ isTeacher }) => {
     }
   };
 
+  const clearData = () => {
+    setName('');
+    setClasses('');
+    setDOB('');
+    setID('');
+    setUpdateID('');
+    setUpdateName('');
+    setUpdateDOB('');
+    setUpdateClasses('');
+    setIDToDelete('');
+    setUpdateVisible(false);
+    setVisible(false);
+    setDeleteVisible(false);
+  }
+
   useEffect(() => {
     fetchData();
+    clearData();
   }, [isTeacher]);
 
   const handleAddClick = () => {
@@ -112,7 +128,7 @@ export const Directory = ({ isTeacher }) => {
     const classesArray = updateClasses.split(',').map(cls => cls.trim());
 
     if (!updateName || !updateDOB || !updateID || !updateClasses) {
-      alert('Please fill in all fields before submitting.');
+      alert('Please fill in all fields before updating.');
       return;
     }
 

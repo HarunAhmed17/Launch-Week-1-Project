@@ -16,8 +16,12 @@ const router = createBrowserRouter([
     element: <Home />,
   },
   {
-    path: "/directory",
-    element: <Directory />
+    path: "/student-directory",
+    element: <Directory isTeacher={ false } />
+  },
+  {
+    path: "/teacher-directory",
+    element: <Directory isTeacher={ true } />
   },
   {
     path: "/dashboard",

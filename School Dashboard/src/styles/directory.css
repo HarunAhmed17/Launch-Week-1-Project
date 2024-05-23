@@ -64,11 +64,15 @@
   color: #F9FAEF;
 }
 
-.header-link-button:hover {
+.header-link-button:hover, 
+.add-button:hover,
+.delete-button:hover{
   background-color: #597b40;
 }
 
-.header-link-button:active {
+.header-link-button:active,
+.add-button:active,
+.delete-button:active {
   background-color: #476730;
 }
 
@@ -138,11 +142,83 @@
 }
 
 .directory-page {
-  margin-top: 80px;
+  margin-top: 60px;
 }
 
 .directory-title {
   font-size: 23px;
   margin-left: 80px;
-  padding-top: 25px;
+  padding-top: 5px;
+  margin-bottom: 20px;
+}
+.button-container {
+  display: block;
+}
+
+.add-button,
+.delete-button {
+  border: none;
+  background-color: #476730;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-radius: 30px;
+  text-decoration: none;
+  color: black;
+  font-size: 15px;
+  color: #F9FAEF;
+}
+
+.delete-button {
+  margin-left: 10px;
+}
+
+.add-button-hidden{
+  display: none;
+}
+
+.add-container {
+  margin-left: 80px;
+  margin-right: 140px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.add-inputs {
+  display: flex;
+  justify-content: space-between;
+  opacity: 1;
+}
+
+.add-inputs-hidden {
+  opacity: 0;
+}
+
+.name-input,
+.classes-input {
+  border-radius: 10px;
+  border-width: 1px;
+  border-color: black;
+  padding-left: 10px;
+    margin-right: 10px;
+}
+
+.classes-input {
+  width: 250px;
+}
+
+/* DATATABLE */
+
+.datatable {
+  background-color: white;
+}
+
+.datatable-container {
+  margin-left: 80px;
+  margin-top: 30px;
+}
+
+.MuiDataGrid-main {
+  padding-left: 10px;
 }

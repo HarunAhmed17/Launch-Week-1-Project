@@ -26,10 +26,10 @@ export const Navbar = () => {
           <div className='directory-options'>
             <div className='options-container'>
               <div className='student-option'>
-                <Link className='student-link' to={'/student-directory'} >Student</Link>
+                <Link className='student-link' to={'/student-directory-admin'} >Student</Link>
               </div>
               <div className='teacher-option'>
-                <Link className='teacher-link' to={'/teacher-directory'}>Teacher</Link>
+                <Link className='teacher-link' to={'/teacher-directory-admin'}>Teacher</Link>
               </div>
             </div>
           </div>

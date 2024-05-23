@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Navbar } from '../components/Navbar';
-import { DataTable } from '../components/DataTable';
+import  DataTable from '../components/DataTable';
 import { db } from "../firebase.js";
 import { getDocs, collection, query, addDoc, deleteDoc, doc, updateDoc, where } from "firebase/firestore";
 

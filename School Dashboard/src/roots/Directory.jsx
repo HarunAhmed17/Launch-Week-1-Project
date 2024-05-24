@@ -328,7 +328,7 @@ export const Directory = ({ isTeacher }) => {
               {visible &&
                 <div className='buttons-box'>
                 <Button style={{ backgroundColor: '#476730', color: 'white', marginRight: '10px', marginBottom: '10px'}}
-                    className='add-button' type="submit">Submit</Button>
+                    className='add-button' type="submit" onClick={handleSubmit}>Submit</Button>
                   
                 <Button style={{ backgroundColor: '#476730', color: 'white', marginBottom: '10px' }}
                   className='add-button' onClick={handleAddClick}>Cancel</Button>
@@ -338,7 +338,7 @@ export const Directory = ({ isTeacher }) => {
               {deleteVisible &&
                 <div className='buttons-box'>
                 <Button style={{ backgroundColor: '#476730', color: 'white' }}
-                    className='add-button' type="submit">Delete</Button>
+                    className='add-button' type="submit" onClick={handleDelete}>Delete</Button>
                   
                 <Button style={{ backgroundColor: '#476730', color: 'white', marginLeft: '10px' }}
                 className='add-button' onClick={handleDeleteClick}>Cancel</Button>
@@ -347,7 +347,7 @@ export const Directory = ({ isTeacher }) => {
               {updateVisible &&
                 <div className='buttons-box'>
                   <Button style={{ backgroundColor: '#476730', color: 'white', marginBottom: '10px', marginRight: '10px'  }}
-                    className='add-button' type="submit">Update</Button>
+                    className='add-button' type="submit" onClick={handleUpdateSubmit}>Update</Button>
                   <Button style={{ backgroundColor: '#476730', color: 'white', marginBottom: '10px' }}
                   className='add-button' onClick={() => handleUpdateClick()}>Cancel</Button>
                 </div>

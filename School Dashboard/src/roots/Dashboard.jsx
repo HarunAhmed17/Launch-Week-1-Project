@@ -58,6 +58,7 @@ export const Dashboard = () => {
         setColor("");
         // add fetchClasses(); --> so that it shows up immediately after form is submitted
         fetchClasses();
+        
     }
 
     return (
@@ -72,15 +73,15 @@ export const Dashboard = () => {
                         <Button color="success" variant="contained" type="submit"> Add Class </Button>
                         <br/> 
                         <label> Subject: </label>
-                         <TextField size="small" id="outlined-basic" label="text" variant="outlined" 
+                         <TextField value={subject} size="small" id="outlined-basic" label="text" variant="outlined" 
                         onChange={(e) => setSubject(e.target.value)}></TextField>
                         <br/> 
                         <label> Semester: </label>
-                        <TextField size="small" id="outlined-basic" label="text" variant="outlined" 
+                        <TextField value={semester} size="small" id="outlined-basic" label="text" variant="outlined" 
                         onChange={(e) => setSemester(e.target.value)}></TextField>
                         <br/>
                         <label> Color: </label>
-                        <TextField size="small" id="outlined-basic" label="text" variant="outlined"
+                        <TextField value={color} size="small" id="outlined-basic" label="text" variant="outlined"
                         onChange={(e) => setColor(e.target.value)}></TextField>
                     </form>
             </div>

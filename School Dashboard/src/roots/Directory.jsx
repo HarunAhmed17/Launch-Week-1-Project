@@ -307,10 +307,10 @@ export const Directory = ({ isTeacher }) => {
             <div className='button-container'>
               {visible &&
                 <div className='buttons-box'>
-                <Button style={{ backgroundColor: '#476730', color: 'white'}}
+                <Button style={{ backgroundColor: '#476730', color: 'white', marginRight: '10px', marginBottom: '10px'}}
                     className='add-button' type="submit">Submit</Button>
                   
-                <Button style={{ backgroundColor: '#476730', color: 'white', marginLeft: '10px' }}
+                <Button style={{ backgroundColor: '#476730', color: 'white', marginBottom: '10px' }}
                   className='add-button' onClick={handleAddClick}>Cancel</Button>
                 </div>
                 }
@@ -326,9 +326,9 @@ export const Directory = ({ isTeacher }) => {
               
               {updateVisible &&
                 <div className='buttons-box'>
-                  <Button style={{ backgroundColor: '#476730', color: 'white', marginBottom: '10px'  }}
+                  <Button style={{ backgroundColor: '#476730', color: 'white', marginBottom: '10px', marginRight: '10px'  }}
                     className='add-button' type="submit">Update</Button>
-                  <Button style={{ backgroundColor: '#476730', color: 'white', marginLeft: '10px', marginBottom: '10px' }}
+                  <Button style={{ backgroundColor: '#476730', color: 'white', marginBottom: '10px' }}
                   className='add-button' onClick={() => handleUpdateClick()}>Cancel</Button>
                 </div>
               }

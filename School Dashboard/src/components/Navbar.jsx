@@ -5,10 +5,27 @@ import { Link } from "react-router-dom";
 import logo from '../images/logo.png'
 import { useState } from 'react';
 import Button from '@mui/material/Button';
+import { useGlobalState } from '../roots/GlobalStateContext';
+
 
 export const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [loginOpen, setLoginOpen] = useState(false);
+
+  const {globalState, setGlobalState } = useGlobalState();
+  const handleClick = (loginPerson) => {
+    const updateGlobalState = (newState) => {
+      setGlobalState(newState)
+    }
+    if (loginPerson === "admin") {
+      updateGlobalState({ ...globalState, key: true });
+    }
+    else {
+      updateGlobalState({ ...globalState, key: false });
+    }
+    console.log(globalState);
+  }
+  
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
@@ -48,10 +65,10 @@ export const Navbar = () => {
             <div className="login-options">
               <div className="options-container">
                 <div className="admin-option-login">
-                  <Link className="admin-link-login" to="/admin-login">Admin</Link>
+                  <Button style={{color: "white"}} className="student-link" onClick={() => handleClick("admin")}>Admin</Button>
                 </div>
                 <div className="teacher-option-login">
-                  <Link className="teacher-link-login" to="/teacher-login">Teacher</Link>
+                  <Button style={{color: "white"}} className="teacher-link" onClick={() => handleClick("teacher")}>Teacher</Button>
                 </div>
               </div>
             </div>

@@ -6,6 +6,7 @@ import { addDoc, collection, getDocs, query, deleteDoc, doc } from "firebase/fir
 import { Link } from "react-router-dom";
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
+import { useGlobalState } from './GlobalStateContext';
 
 
 export const Dashboard = () => {
@@ -15,6 +16,18 @@ export const Dashboard = () => {
     const [subject, setSubject] = useState("");
     const [semester, setSemester] = useState("");
     const [color, setColor] = useState("");
+    
+    const {globalState, setGlobalState } = useGlobalState();
+    useEffect(() => {
+        console.log(globalState);
+        // console.log(globalState.key);
+        // const updateGlobalState = (newState) => {
+        //     setGlobalState(newState);
+        // };
+        // updateGlobalState({ ...globalState, key: 'new value' });
+        
+    }, [globalState])
+     
 
     const fetchClasses = async () => {
         try {
@@ -30,7 +43,7 @@ export const Dashboard = () => {
         }
     };
 
-    
+
 
 
     useEffect(() => {
@@ -41,6 +54,9 @@ export const Dashboard = () => {
 
     // functionality to delete Class
     const removeClass = async (docId) => {
+        // if (globalState.key == false) {
+        //     return;
+        // }
         console.log("deleting doc with id: ", docId);
         await deleteDoc(doc(db, "dashboard", docId));
         fetchClasses();

@@ -245,8 +245,6 @@ export const Directory = ({ isTeacher }) => {
                     placeholder="Classes (comma separated)"
                   />
 
-                  <Button style={{ backgroundColor: '#476730', color: 'white', marginLeft: '10px' }}
-                    className='add-button' type="submit">Submit</Button>
                 </div>
               </form>
             }
@@ -261,8 +259,6 @@ export const Directory = ({ isTeacher }) => {
                     onChange={(e) => setIDToDelete(e.target.value)}
                     placeholder={isTeacher ? "Teacher ID" : "Student ID"}
                   />
-                  <Button style={{ backgroundColor: '#476730', color: 'white', marginLeft: '10px' }}
-                    className='add-button' type="submit">Delete</Button>
                 </div>
               </form>
             }
@@ -299,8 +295,6 @@ export const Directory = ({ isTeacher }) => {
                     placeholder="Classes (comma separated)"
                   />
 
-                  <Button style={{ backgroundColor: '#476730', color: 'white', marginLeft: '10px' }}
-                    className='add-button' type="submit">Update</Button>
                 </div>
               </form>
             }
@@ -311,22 +305,42 @@ export const Directory = ({ isTeacher }) => {
             }
 
             <div className='button-container'>
-              {visible && <Button style={{ backgroundColor: '#476730', color: 'white', marginLeft: '10px' }}
-                className='add-button' onClick={handleAddClick}>Cancel</Button>}
+              {visible &&
+                <div className='buttons-box'>
+                <Button style={{ backgroundColor: '#476730', color: 'white'}}
+                    className='add-button' type="submit">Submit</Button>
+                  
+                <Button style={{ backgroundColor: '#476730', color: 'white', marginLeft: '10px' }}
+                  className='add-button' onClick={handleAddClick}>Cancel</Button>
+                </div>
+                }
               
-              {deleteVisible && <Button style={{ backgroundColor: '#476730', color: 'white', marginLeft: '10px' }}
-                className='add-button' onClick={handleDeleteClick}>Cancel</Button>}
+              {deleteVisible &&
+                <div className='buttons-box'>
+                <Button style={{ backgroundColor: '#476730', color: 'white' }}
+                    className='add-button' type="submit">Delete</Button>
+                  
+                <Button style={{ backgroundColor: '#476730', color: 'white', marginLeft: '10px' }}
+                className='add-button' onClick={handleDeleteClick}>Cancel</Button>
+                </div>}
               
-              {updateVisible && <Button style={{ backgroundColor: '#476730', color: 'white', marginLeft: '10px' }}
-                className='add-button' onClick={() => handleUpdateClick()}>Cancel</Button>}
+              {updateVisible &&
+                <div className='buttons-box'>
+                  <Button style={{ backgroundColor: '#476730', color: 'white', marginBottom: '10px'  }}
+                    className='add-button' type="submit">Update</Button>
+                  <Button style={{ backgroundColor: '#476730', color: 'white', marginLeft: '10px', marginBottom: '10px' }}
+                  className='add-button' onClick={() => handleUpdateClick()}>Cancel</Button>
+                </div>
+              }
               
-              {!visible && !deleteVisible && !updateVisible && <Button style={{ backgroundColor: '#476730', color: 'white', marginLeft: '10px' }}
+              
+              {!visible && !deleteVisible && !updateVisible && <Button style={{ backgroundColor: '#476730', color: 'white', marginLeft: '10px', marginBottom: '10px'  }}
                 className='add-button' onClick={handleAddClick}>+ Add {isTeacher ? 'Teacher' : 'Student'}</Button>}
               
-              {!deleteVisible && !visible && !updateVisible && <Button style={{ backgroundColor: '#476730', color: 'white', marginLeft: '10px' }}
+              {!deleteVisible && !visible && !updateVisible && <Button style={{ backgroundColor: '#476730', color: 'white', marginLeft: '10px', marginBottom: '10px'  }}
                 className='delete-button' onClick={handleDeleteClick}>- Delete {isTeacher ? 'Teacher' : 'Student'}</Button>}
               
-              {!deleteVisible && !visible && !updateVisible && <Button style={{ backgroundColor: '#476730', color: 'white', marginLeft: '10px' }}
+              {!deleteVisible && !visible && !updateVisible && <Button style={{ backgroundColor: '#476730', color: 'white', marginLeft: '10px', marginBottom: '10px'  }}
                 className='update-button' onClick={() => handleUpdateClick()}>^ Update {isTeacher ? 'Teacher' : 'Student'} by ID</Button>}
             </div>
           </div>

@@ -154,10 +154,6 @@
   margin-bottom: 20px;
 }
 
-.button-container {
-  display: block;
-}
-
 .add-button,
 .delete-button,
 .update-button {
@@ -196,17 +192,26 @@
   opacity: 1;
 }
 
+
+
+.buttons-box {
+  /* display: flex; */
+  /* justify-content: space-between; */
+}
+
 .add-inputs-hidden {
   opacity: 0;
 }
 
 .name-input,
 .classes-input {
-  border-radius: 10px;
+  border-radius: 5px;
   border-width: 1px;
   border-color: black;
   padding-left: 10px;
-    margin-right: 10px;
+  margin-right: 10px;
+  height: 35px;
+  margin-bottom: 5px;
 }
 
 .classes-input {
@@ -228,20 +233,19 @@
   padding-left: 10px;
 }
 
-@media (max-width: 700px) {
-  .button-container {
-    flex-direction: column;
+@media (max-width: 1200px) {
+  .add-inputs {
+    display: block;
   }
 
-  .add-button,
-  .delete-button,
-  .update-button {
-    margin: 5px 0;
-    margin-left: 0px;
-    /* Optional: Add margin to create space between buttons when stacked */
+  .add-container {
+    display: block;
   }
-  .add-button {
-    margin-right: 5px;
+}
+
+@media (max-width: 700px) {
+  .add-inputs {
+    display: block;
   }
 }
 

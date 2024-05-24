@@ -4,6 +4,7 @@ import '../styles/directory.css';
 import { Link } from "react-router-dom";
 import logo from '../images/logo.png'
 import { useState } from 'react';
+import Button from '@mui/material/Button';
 
 export const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -37,7 +38,12 @@ export const Navbar = () => {
             </div>
           </div>
           <Link className="header-link" to="/calendar">Calendar</Link>
-          <Link className="header-link-button" to="/login">Log-in</Link>
+          <Button variant="contained" 
+            style={{ backgroundColor: '#476730', color: 'white', marginLeft: '10px' }}
+          >
+            <Link to="/login" className='login-link'>Log-in</Link>
+          </Button>
+          {/* <Link className="header-link-button" to="/login">Log-in</Link> */}
         </div>
         <div className="hamburger" onClick={toggleMenu}>
           <div></div>

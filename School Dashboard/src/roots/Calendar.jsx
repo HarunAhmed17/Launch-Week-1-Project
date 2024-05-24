@@ -1,4 +1,4 @@
-import { React, useState, useRef, useEffect, Component } from 'react';
+import React, { useState, useRef, useEffect, Component } from 'react';
 import { Navbar } from '../components/Navbar';
 
 import { Calendar as FullCalendar } from '@fullcalendar/core';
@@ -35,6 +35,7 @@ export const Calendar = () => {
     const [updateEndTime, setUpdateEndTime] = useState('');
     const [updateStartTime, setUpdateStartTime] = useState('');
     const [updateAllData, setUpdateAllData] = useState([]);
+    const [currentEventTitle, setCurrentEventTitle] = useState('');
 
     const [timeSlots, setTimeSlots] = useState([]);
     const [viewEditEventDialogOpen, setViewEditEventDialogOpen] = useState(false);
@@ -111,6 +112,7 @@ export const Calendar = () => {
         setUpdateIsDifferentDayChecked(false); // Uncheck and hide the end date field
         setUpdateStartTime(''); // Reset start time
         setUpdateEndTime(''); // Reset end time
+        setCurrentEventTitle(''); // Set the current event title
     };
 
     const validateTimeRange = (startTime, endTime) => {
@@ -213,6 +215,7 @@ export const Calendar = () => {
         setUpdateStartDate(info.event.start.toISOString().split('T')[0]);
         if(info.event.end) setUpdateEndDate(info.event.end.toISOString().split('T')[0]);
         setUpdateIsAllDayChecked(info.event.allDay);
+        setCurrentEventTitle(info.event.title); // Set the current event title
         console.log(info.event.start);
     };
     
@@ -337,7 +340,7 @@ export const Calendar = () => {
                     <DialogTitle id="form-dialog-title">Select Action</DialogTitle>
                     <DialogContent>
                         <DialogContentText>
-                            Do you want to edit or delete this event?
+                            Do you want to edit or delete "{currentEventTitle}"
                         </DialogContentText>
                     </DialogContent>
                     <DialogActions>

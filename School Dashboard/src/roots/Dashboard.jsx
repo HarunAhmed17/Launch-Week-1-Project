@@ -1,4 +1,4 @@
-import { React, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import {Navbar} from "../components/Navbar";
 import { db } from "../firebase";
 import "../styles/Dashboard.css";
@@ -29,6 +29,8 @@ export const Dashboard = () => {
             console.error("Error fetching documents: ", error);
         }
     };
+
+    
 
 
     useEffect(() => {
@@ -70,7 +72,7 @@ export const Dashboard = () => {
             </div>
              <div className="form"> 
                      <form className="addClassForm" onSubmit={handleSubmit}> 
-                        <Button color="success" variant="contained" type="submit"> Add Class </Button>
+                        <Button style={{backgroundColor: "#476730"}} variant="contained" type="submit"> Add Class </Button>
                         <br/> 
                         <label> Subject: </label>
                          <TextField value={subject} size="small" id="outlined-basic" label="text" variant="outlined" 
@@ -88,7 +90,7 @@ export const Dashboard = () => {
             <div className="classOutline">
                 {classes.map((dashboardClass) => (
                     <div key={dashboardClass.id} className="dashboardClass" style={{'--box-color': dashboardClass.color}}> 
-                        <Link key={dashboardClass.subject} to={`/class/${dashboardClass.subject}`}>
+                        <Link style={{color: dashboardClass.color}} key={dashboardClass.subject} to={`/class/${dashboardClass.subject}`}>
                             {console.log(typeof dashboardClass.subject)}
                             <hr className="line" />
                             <h4 style={{color: dashboardClass.color}}> {dashboardClass.subject} </h4>

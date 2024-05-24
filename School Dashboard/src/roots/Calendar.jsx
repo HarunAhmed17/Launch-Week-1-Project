@@ -460,7 +460,7 @@ export const Calendar = () => {
     {/* THIS IS THE ENTERING A NEW EVENT TO ADD TO THE CALENDAR */}
             <Button className="enterEventButton"
                 variant="contained" 
-                style={{ backgroundColor: '#5ab350', color: 'white' , marginLeft: '10px'}}
+                style={{ backgroundColor: '#476730', color: 'white' , marginLeft: '10px'}}
                 
                 onClick={() => {
                     resetFormFields(); // Reset form fields if needed

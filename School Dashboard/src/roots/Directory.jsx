@@ -7,8 +7,12 @@ import Button from '@mui/material/Button';
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useGlobalState } from './GlobalStateContext';
 
 export const Directory = ({ isTeacher }) => {
+  //true admin, false teacher
+  const {globalState, setGlobalState } = useGlobalState();
+  
   const [data, setData] = useState([]);
 
   const [visible, setVisible] = useState(false);
@@ -57,7 +61,7 @@ export const Directory = ({ isTeacher }) => {
     fetchData();
     clearData();
     document.title = isTeacher ? "Teacher " : "Student " + 'Directory';
-  }, [isTeacher]);
+  }, [isTeacher, globalState]);
 
   const handleAddClick = () => {
     setVisible(!visible);
@@ -211,6 +215,8 @@ export const Directory = ({ isTeacher }) => {
       <div className='directory-page'>
         <div className='directory-title'>{isTeacher ? 'Teacher Directory' : 'Student Directory'}</div>
 
+        {globalState &&
+        
         <div className='inputs-container'>
           <div className='add-container'>
             {visible &&
@@ -345,6 +351,7 @@ export const Directory = ({ isTeacher }) => {
             </div>
           </div>
         </div>
+        }
 
         <div className='datatable-container'>
           <DataTable
@@ -360,3 +367,5 @@ export const Directory = ({ isTeacher }) => {
 };
 
 export default Directory;
+
+

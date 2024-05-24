@@ -229,7 +229,7 @@ export const Directory = ({ isTeacher }) => {
       <div className='directory-page'>
         <div className='directory-title'>{isTeacher ? 'Teacher Directory' : 'Student Directory'}</div>
 
-        {globalState &&
+        {globalState.key &&
         
         <div className='inputs-container'>
           <div className='add-container'>

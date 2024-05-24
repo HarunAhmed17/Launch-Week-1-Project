@@ -1,4 +1,4 @@
-import { React, useState, useRef, useEffect, Component } from 'react';
+import React, { useState, useRef, useEffect, Component } from 'react';
 import { Navbar } from '../components/Navbar';
 
 import { Calendar as FullCalendar } from '@fullcalendar/core';

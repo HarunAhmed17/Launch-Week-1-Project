@@ -70,7 +70,7 @@ export const Dashboard = () => {
             </div>
              <div className="form"> 
                      <form className="addClassForm" onSubmit={handleSubmit}> 
-                        <Button color="success" variant="contained" type="submit"> Add Class </Button>
+                        <Button style={{backgroundColor: "#476730"}} variant="contained" type="submit"> Add Class </Button>
                         <br/> 
                         <label> Subject: </label>
                          <TextField value={subject} size="small" id="outlined-basic" label="text" variant="outlined" 

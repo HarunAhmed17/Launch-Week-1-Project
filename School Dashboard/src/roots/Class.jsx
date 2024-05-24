@@ -21,18 +21,22 @@ export const Class = () => {
                     const teacherDoc = await getDoc(doc(db, "teachers", data.teacher));
                     const teacherName = teacherDoc.exists() ? teacherDoc.data().name : "Unknown";
 
-                    const students = await Promise.all(
-                        data.students.map(async (studentId) => {
-                            const studentDoc = await getDoc(doc(db, "students", studentId));
-                            return studentDoc.exists() ? { docId: studentDoc.id, ...studentDoc.data() } : null;
-                        })
-                    );
-
+                    const students = data.students;
+                    let totalGrade = 0;
+                    let studentCount = 0;
+                    Object.values(students).forEach(grade => {
+                        if (grade !== undefined) {
+                            totalGrade += grade;
+                            studentCount++;
+                        }
+                    });
+                    const avgGrade = studentCount ? totalGrade / studentCount : 0;
                     setClassData({
                         ...data,
                         id: classDoc.id,
                         teacher: teacherName,
-                        students: students.filter(Boolean),
+                        students,
+                        avgGrade,
                     });
                 }
             }
@@ -43,6 +47,8 @@ export const Class = () => {
             const studentsList = studentsSnapshot.docs.map(doc => ({ docId: doc.id, ...doc.data() }));
             setAllStudents(studentsList);
         };
+
+
 
         fetchClassData();
         fetchAllStudents();
@@ -56,41 +62,77 @@ export const Class = () => {
             if (studentDoc.exists()) {
                 const classDocRef = doc(db, "classes", classId);
                 await updateDoc(classDocRef, {
-                    students: arrayUnion(newStudentDocId)
+                    students: {
+                        ...classData.students,
+                        [newStudentDocId]: 0,
+                    }
                 });
-
+                    const updatedStudents = { ...classData.students, [newStudentDocId]: 0 };
+                const gradesArray = Object.values(updatedStudents).filter(grade => grade !== undefined);
+                const averageGrade = gradesArray.length ? gradesArray.reduce((acc, curr) => acc + curr, 0) / gradesArray.length : 0;
+    
                 setClassData(prevData => ({
                     ...prevData,
-                    students: [...prevData.students, { docId: newStudentDocId, ...studentDoc.data() }]
+                    students: updatedStudents,
+                    avgGrade: averageGrade
                 }));
-
+    
                 setNewStudentDocId('');
             } else {
                 alert("Student not found in the database");
             }
         }
     };
-
+    
     const removeStudent = async () => {
         if (studentIdToDelete.trim() !== '') {
             console.log('Removing student with Document ID:', studentIdToDelete);
-            const studentDoc = await getDoc(doc(db, "students", studentIdToDelete));
-            if (studentDoc.exists()) {
-                const classDocRef = doc(db, "classes", classId);
-                await updateDoc(classDocRef, {
-                    students: arrayRemove(studentIdToDelete)
-                });
-
-                setClassData(prevData => ({
-                    ...prevData,
-                    students: prevData.students.filter(student => student.docId !== studentIdToDelete)
-                }));
-
-                setStudentIdToDelete('');
-            } else {
-                alert("Student not found in the database");
-            }
+            const classDocRef = doc(db, "classes", classId);
+            const updatedStudents = { ...classData.students };
+            delete updatedStudents[studentIdToDelete];
+            await updateDoc(classDocRef, {
+                students: updatedStudents
+            });
+    
+            const gradesArray = Object.values(updatedStudents).filter(grade => grade !== undefined);
+            const averageGrade = gradesArray.length ? gradesArray.reduce((acc, curr) => acc + curr, 0) / gradesArray.length : 0;
+    
+            setClassData(prevData => ({
+                ...prevData,
+                students: updatedStudents,
+                avgGrade: averageGrade
+            }));
+    
+            setStudentIdToDelete('');
         }
+    };
+    
+    
+
+    const updateGrade = async (studentId, newGrade) => {
+        const classDocRef = doc(db, "classes", classId);
+        await updateDoc(classDocRef, {
+            [`students.${studentId}`]: newGrade
+        });
+
+        setClassData(prevData => ({
+            ...prevData,
+            students: {
+                ...prevData.students,
+                [studentId]: newGrade
+            }
+        }));
+        const updatedStudents = { ...classData.students, [studentId]: newGrade };
+        const gradesArray = Object.values(updatedStudents);
+        const averageGrade = gradesArray.reduce((acc, curr) => acc + curr, 0) / gradesArray.length;
+        setClassData(prevData => ({
+            ...prevData,
+            students: {
+                ...prevData.students,
+                [studentId]: newGrade
+            },
+            avgGrade: averageGrade
+        }));
     };
 
     if (!classData) return <div>Loading...</div>;
@@ -131,11 +173,12 @@ export const Class = () => {
                         onChange={(e) => setStudentIdToDelete(e.target.value)}
                     >
                         <option value="">Select Student</option>
-                        {classData.students.map(student => (
-                            <option key={student.docId} value={student.docId}>
-                                {student.name}
-                            </option>
-                        ))}
+                        {classData.students &&
+                            Object.entries(classData.students).map(([studentId, grade]) => (
+                                <option key={studentId} value={studentId}>
+                                    {allStudents.find(student => student.docId === studentId).name}
+                                </option>
+                            ))}
                     </select>
                     <button onClick={removeStudent}>
                         Remove Student
@@ -149,13 +192,29 @@ export const Class = () => {
                             <tr>
                                 <th>Name</th>
                                 <th>Date of Birth</th>
+                                <th>Grade</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {classData.students.map((student) => (
-                                <tr key={student.docId}>
-                                    <td>{student.name}</td>
-                                    <td>{student.dob}</td>
+                            {classData.students &&
+                                Object.entries(classData.students).map(([studentId, grade]) => (
+                                    <tr key={studentId}>
+                                        <td>
+                                            {allStudents.find(student => student.docId === studentId).name}
+                                        </td>
+                                        <td>
+                                            {allStudents.find(student => studentId === student.docId).dob}
+                                        </td>
+                                        <td>
+                                            <input
+                                                type="number"
+                                                value={grade}
+                                                onChange={(e) => updateGrade(studentId, parseInt(e.target.value))}
+                                            />
+                                        </td>
+                                        <td>
+                                        
+                                    </td>
                                 </tr>
                             ))}
                         </tbody>

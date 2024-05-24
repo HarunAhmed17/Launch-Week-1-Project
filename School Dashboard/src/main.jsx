@@ -17,21 +17,21 @@ const router = createBrowserRouter([
     element: <Home />,
   },
   {
-    path: '/student-directory-admin',
+    path: '/student-directory',
     element: <Directory isTeacher={false} />,
   },
   {
-    path: '/teacher-directory-admin',
+    path: '/teacher-directory',
     element: <Directory isTeacher={true} />,
   },
-  {
-    path: '/student-directory',
-    element: <NonAdminDirectory isTeacher={false} />,
-  },
-  {
-    path: '/teacher-directory',
-    element: <NonAdminDirectory isTeacher={true} />,
-  },
+  // {
+  //   path: '/student-directory',
+  //   element: <NonAdminDirectory isTeacher={false} />,
+  // },
+  // {
+  //   path: '/teacher-directory',
+  //   element: <NonAdminDirectory isTeacher={true} />,
+  // },
   {
     path: '/dashboard',
     element: <Dashboard />,

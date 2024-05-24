@@ -133,6 +133,7 @@ body {
 @media (max-width: 768px) {
     .header {
       margin-bottom: 100px;
+      /* height:100px; */
   }
 
   .navbar-title {

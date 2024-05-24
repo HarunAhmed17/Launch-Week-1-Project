@@ -54,9 +54,9 @@ export const Dashboard = () => {
 
     // functionality to delete Class
     const removeClass = async (docId) => {
-        // if (globalState.key == false) {
-        //     return;
-        // }
+        if (globalState.key === false) {
+            return;
+        }
         console.log("deleting doc with id: ", docId);
         await deleteDoc(doc(db, "dashboard", docId));
         fetchClasses();
@@ -65,6 +65,9 @@ export const Dashboard = () => {
     // functionality that adds class
     const handleSubmit = async (e) => {
         e.preventDefault();
+        if (globalState.key === false) {
+            return;
+        }
         const docRef = await addDoc(collection(db, "dashboard"), {
             subject: subject,
             semester: semester,
@@ -79,6 +82,14 @@ export const Dashboard = () => {
         
     }
 
+    // if (globalState.key === true) {
+    //     alert("User is now an admin");
+    // }
+    // else {
+    //     alert("User is now a teacher");
+    // }
+
+
     return (
         <>
             <Navbar />
@@ -86,7 +97,8 @@ export const Dashboard = () => {
                 <h1> Dashboard </h1>
                 <hr className="line" />
             </div>
-             <div className="form"> 
+             {globalState.key && (
+                <div className="form"> 
                      <form className="addClassForm" onSubmit={handleSubmit}> 
                         <Button style={{backgroundColor: "#476730"}} variant="contained" type="submit"> Add Class </Button>
                         <br/> 
@@ -102,7 +114,8 @@ export const Dashboard = () => {
                         <TextField value={color} size="small" id="outlined-basic" label="text" variant="outlined"
                         onChange={(e) => setColor(e.target.value)}></TextField>
                     </form>
-            </div>
+                </div> 
+            )}
             <div className="classOutline">
                 {classes.map((dashboardClass) => (
                     <div key={dashboardClass.id} className="dashboardClass" style={{'--box-color': dashboardClass.color}}> 
@@ -112,11 +125,13 @@ export const Dashboard = () => {
                             <h4 style={{color: dashboardClass.color}}> {dashboardClass.subject} </h4>
                             <h6 style={{color: dashboardClass.color}}> {dashboardClass.semester} </h6>
                         </Link>
-                        <Button size="small" color="success" variant="outlined" type="submit"
-                        onClick={(e) => {
-                            e.preventDefault();
-                            removeClass(dashboardClass.id)
-                        }}> Remove Class </Button>
+                        {globalState.key && (
+                            <Button size="small" color="success" variant="outlined" type="submit"
+                            onClick={(e) => {
+                                e.preventDefault();
+                                removeClass(dashboardClass.id)
+                            }}> Remove Class </Button> 
+                        )}
                     </div>
                     
                 ))}

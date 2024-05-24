@@ -4,6 +4,7 @@ import DataTable from '../components/DataTable';
 import { db } from "../firebase.js";
 import { getDocs, collection, query, addDoc, deleteDoc, doc, updateDoc, where } from "firebase/firestore";
 import Button from '@mui/material/Button';
+// import { useGlobalState } from './GlobalStateContext';
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -30,6 +31,19 @@ export const Directory = ({ isTeacher }) => {
   const [updateName, setUpdateName] = useState('');
   const [updateDOB, setUpdateDOB] = useState('');
   const [updateClasses, setUpdateClasses] = useState('');
+
+
+  // const {globalState, setGlobalState } = useGlobalState();
+  //   useEffect(() => {
+  //       console.log(globalState);
+  //       // console.log(globalState.key);
+  //       // const updateGlobalState = (newState) => {
+  //       //     setGlobalState(newState);
+  //       // };
+  //       // updateGlobalState({ ...globalState, key: 'new value' });
+        
+  //   }, [globalState])
+
 
   const fetchData = async () => {
     try {

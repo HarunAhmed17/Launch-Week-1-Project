@@ -1,3 +1,4 @@
+/* Existing CSS */
 .home {
     display: flex;
     flex-direction: column;
@@ -19,11 +20,11 @@
     color: #476730;
 }
 
-.main-title h1{
+.main-title h1 {
     font-family: 'Newsreader', serif;
     font-size: 60px;
     align-items: center;
-    line-height: 1.2; /* Adjust the line height if needed */
+    line-height: 1.2;
 }
 
 .large-logo {
@@ -36,7 +37,7 @@
 .images {
     display: flex;
     flex-direction: row;
-}   
+}
 
 .col-imgs {
     display: flex;
@@ -49,10 +50,9 @@
     margin-left: 150px;
     margin-top: 250px;
     align-items: center;
-    border-width: 1px;
 }
 
-.curiosity-container img{
+.curiosity-container img {
     width: 550px;
     height: auto;
     border-radius: 10%;
@@ -65,19 +65,19 @@ h2 {
 .collaboration-container {
     display: flex;
     flex-direction: column;
-    align-items: center ;
+    align-items: center;
     margin-left: 150px;
     margin-top: 70px;
     margin-bottom: 50px;
 }
 
-.collaboration-container img{
+.collaboration-container img {
     width: 700px;
     height: auto;
     border-radius: 10%;
 }
 
-.excellence-container img{
+.excellence-container img {
     width: 700px;
     height: auto;
     border-radius: 10%;
@@ -86,11 +86,16 @@ h2 {
 .excellence-container {
     display: flex;
     flex-direction: column;
-    align-items: center ;
+    align-items: center;
     margin-left: 150px;
     margin-top: 70px;
 }
 
+.carousel-text {
+    display: none;
+}
+
+/* Carousel CSS for small screens */
 @media (max-width: 480px) {
     .large-logo {
         width: auto;
@@ -98,12 +103,11 @@ h2 {
         margin: auto;
     }
 
-    .main-title h1{
+    .main-title h1 {
         font-size: 40px;
-        /* margin-top: -200px; */
     }
 
-    .main-title h2{
+    .main-title h2 {
         font-size: 20px;
         margin: auto;
         margin-bottom: 10px;
@@ -117,5 +121,81 @@ h2 {
         text-align: center;
         margin: auto;
     }
-}
 
+    .images {
+        display: none;
+    }
+
+    .imgs-contain {
+        display: flex;
+        overflow: hidden;
+        width: 100%;
+        position: relative;
+        height: 300px;
+        justify-content: center;
+    }
+
+    .carousel-slide {
+        display: flex;
+        width: 300%;
+        animation: slide 9s infinite;
+    }
+
+    .carousel-slide div {
+        flex: 1 0 100%;
+        position: relative;
+        background-size: cover;
+        background-position: center;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .curiosity-contain {
+        background-image: url('../images/curiosity.jpg');
+    }
+
+    .excellence-contain {
+        background-image: url('../images/excellence.jpg');
+    }
+
+    .collaboration-contain {
+        background-image: url('../images/collaboration.jpg');
+    }
+
+    .carousel-text {
+        display: inline;
+        color: white;
+        font-size: 48px;
+        font-family: 'Noto Serif', serif;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        opacity: 0;
+        animation: fadeInOut 9s infinite;
+    }
+
+    .carousel-slide div:nth-child(1) .carousel-text {
+        animation-delay: 0s;
+    }
+
+    .carousel-slide div:nth-child(2) .carousel-text {
+        animation-delay: 3s;
+    }
+
+    .carousel-slide div:nth-child(3) .carousel-text {
+        animation-delay: 5s;
+    }
+
+    @keyframes slide {
+        0%, 20% { transform: translateX(0); }
+        25%, 45% { transform: translateX(-100%); }
+        50%, 70% { transform: translateX(-200%); }
+        75%, 100% { transform: translateX(0); }
+    }
+
+    @keyframes fadeInOut {
+        0%, 20% { opacity: 1; }
+        25%, 100% { opacity: 0; }
+    }
+}

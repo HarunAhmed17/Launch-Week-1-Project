@@ -7,9 +7,14 @@ import { useState } from 'react';
 
 export const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [loginOpen, setLoginOpen] = useState(false);
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
+  };
+
+  const toggleLogin = () => {
+    setLoginOpen(!loginOpen);
   };
 
   return (
@@ -37,13 +42,33 @@ export const Navbar = () => {
             </div>
           </div>
           <Link className="header-link" to="/calendar">Calendar</Link>
-          <Link className="header-link-button" to="/login">Log-in</Link>
+          <div className="login-link">
+            <div className="header-link">Log-in</div>
+            <div className="login-options">
+              <div className="options-container">
+                <div className="admin-option-login">
+                  <Link className="admin-link-login" to="/admin-login">Admin</Link>
+                </div>
+                <div className="teacher-option-login">
+                  <Link className="teacher-link-login" to="/teacher-login">Teacher</Link>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
+
         <div className="hamburger" onClick={toggleMenu}>
           <div></div>
           <div></div>
           <div></div>
         </div>
+        
+        <div className="hotdog" onClick={toggleLogin}>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+
       </div>
     </header>
   );

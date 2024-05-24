@@ -19,11 +19,14 @@ export const Navbar = () => {
     }
     if (loginPerson === "admin") {
       updateGlobalState({ ...globalState, key: true });
+      // alert("User is now an admin");
     }
     else {
       updateGlobalState({ ...globalState, key: false });
+      // alert("User is now an teacher");
     }
     console.log(globalState);
+
   }
   
 
@@ -65,12 +68,15 @@ export const Navbar = () => {
             <div className="login-options">
               <div className="options-container">
                 <div className="admin-option-login">
-                  <Button style={{color: "white"}} className="student-link" onClick={() => handleClick("admin")}>Admin</Button>
+                  <Button style={{color: "white", marginTop:"-20px", marginBottom:"-20px"}} className="student-link" onClick={() => handleClick("admin")}>Admin</Button>
                 </div>
                 <div className="teacher-option-login">
-                  <Button style={{color: "white"}} className="teacher-link" onClick={() => handleClick("teacher")}>Teacher</Button>
+                  <Button style={{color: "white", marginTop:"-20px", marginBottom:"-20px"}} className="teacher-link" onClick={() => handleClick("teacher")}>Teacher</Button>
                 </div>
               </div>
+            </div>
+            <div className="userIndicator"> 
+                <p> User: {globalState.key ? "Admin" : "Teacher"}</p>
             </div>
           </div>
         </div>

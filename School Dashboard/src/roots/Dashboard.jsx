@@ -2,7 +2,7 @@ import { React, useState, useEffect } from 'react';
 import {Navbar} from "../components/Navbar";
 import { db } from "../firebase";
 import "../styles/Dashboard.css";
-import { addDoc, collection, getDocs, query } from "firebase/firestore";
+import { addDoc, collection, getDocs, query, deleteDoc, doc } from "firebase/firestore";
 import { Link } from "react-router-dom";
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
@@ -30,12 +30,19 @@ export const Dashboard = () => {
         }
     };
 
+
     useEffect(() => {
+        document.title = "Dashboard";
         fetchClasses();
     }, [])
 
 
     // functionality to delete Class
+    const removeClass = async (docId) => {
+        console.log("deleting doc with id: ", docId);
+        await deleteDoc(doc(db, "dashboard", docId));
+        fetchClasses();
+    }
 
     // functionality that adds class
     const handleSubmit = async (e) => {
@@ -51,6 +58,7 @@ export const Dashboard = () => {
         setColor("");
         // add fetchClasses(); --> so that it shows up immediately after form is submitted
         fetchClasses();
+        
     }
 
     return (
@@ -58,39 +66,42 @@ export const Dashboard = () => {
             <Navbar />
              <div className="title">
                 <h1> Dashboard </h1>
-                 <hr className="line" />
-             </div>
-              <div className="classOutline"> 
-                 {classes.map((dashboardClass) => (
-                    <Link key={dashboardClass.subject} to={`/class/${dashboardClass.subject}`}>
-                        {console.log(typeof dashboardClass.subject)}
-                        <div key={dashboardClass.id} className="dashboardClass" style={{'--box-color': dashboardClass.color}}> 
-                            <hr className="line" />
-                            <h5> {dashboardClass.subject} </h5>
-                            <h6> {dashboardClass.semester} </h6>
-                        </div>
-                     </Link>
-                ))}
+                <hr className="line" />
             </div>
-            
              <div className="form"> 
                      <form className="addClassForm" onSubmit={handleSubmit}> 
+                        <Button color="success" variant="contained" type="submit"> Add Class </Button>
+                        <br/> 
                         <label> Subject: </label>
-                         <TextField id="outlined-basic" label="outlined" variant="outlined" 
+                         <TextField value={subject} size="small" id="outlined-basic" label="text" variant="outlined" 
                         onChange={(e) => setSubject(e.target.value)}></TextField>
-                        <br/>
-
+                        <br/> 
                         <label> Semester: </label>
-                        <TextField id="outlined-basic" label="outlined" variant="outlined" 
+                        <TextField value={semester} size="small" id="outlined-basic" label="text" variant="outlined" 
                         onChange={(e) => setSemester(e.target.value)}></TextField>
                         <br/>
-
                         <label> Color: </label>
-                        <TextField id="outlined-basic" label="outlined" variant="outlined"
+                        <TextField value={color} size="small" id="outlined-basic" label="text" variant="outlined"
                         onChange={(e) => setColor(e.target.value)}></TextField>
-
-                        <Button variant="contained" type="submit"> Add Class </Button>
                     </form>
+            </div>
+            <div className="classOutline">
+                {classes.map((dashboardClass) => (
+                    <div key={dashboardClass.id} className="dashboardClass" style={{'--box-color': dashboardClass.color}}> 
+                        <Link key={dashboardClass.subject} to={`/class/${dashboardClass.subject}`}>
+                            {console.log(typeof dashboardClass.subject)}
+                            <hr className="line" />
+                            <h4 style={{color: dashboardClass.color}}> {dashboardClass.subject} </h4>
+                            <h6 style={{color: dashboardClass.color}}> {dashboardClass.semester} </h6>
+                        </Link>
+                        <Button size="small" color="success" variant="outlined" type="submit"
+                        onClick={(e) => {
+                            e.preventDefault();
+                            removeClass(dashboardClass.id)
+                        }}> Remove Class </Button>
+                    </div>
+                    
+                ))}
             </div>
         </>
     );

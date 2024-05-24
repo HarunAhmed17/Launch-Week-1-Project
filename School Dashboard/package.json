@@ -12,18 +12,22 @@
   "dependencies": {
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.5",
+    "@fontsource/roboto": "^5.0.13",
     "@fullcalendar/common": "^5.11.5",
     "@fullcalendar/core": "^6.1.11",
     "@fullcalendar/react": "^6.1.11",
     "@fullcalendar/timegrid": "^6.1.11",
+    "@mui/icons-material": "^5.15.18",
     "@mui/material": "^5.15.18",
+    "@mui/styled-engine-sc": "^6.0.0-alpha.18",
     "@mui/x-data-grid": "^7.5.1",
     "@popperjs/core": "^2.11.8",
     "firebase": "^10.12.1",
     "fullcalendar": "^6.1.11",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-router-dom": "^6.23.1"
+    "react-router-dom": "^6.23.1",
+    "styled-components": "^6.1.11"
   },
   "devDependencies": {
     "@types/react": "^18.2.66",

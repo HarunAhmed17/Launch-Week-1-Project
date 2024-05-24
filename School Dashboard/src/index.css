@@ -72,12 +72,27 @@ body {
   background-color: rgb(9, 75, 9);
 }
 
+
 .directory-link {
+  position: relative;
+  /* margin-right: 20px;  */
+}
+.login-link {
   position: relative;
   /* margin-right: 20px;  */
 }
 
 .directory-options {
+  display: none;
+  position: absolute;
+  top: 100%;
+  margin-top: -18px;
+  left: 0;
+  background-color: #F9FAEF;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.25);
+}
+
+.login-options {
   display: none;
   position: absolute;
   top: 100%;
@@ -97,7 +112,9 @@ body {
 .directory-link:hover .directory-options {
   display: block;
 }
-
+.login-link:hover .login-options {
+  display: block;
+}
 .hamburger {
   display: none;
   flex-direction: column;
@@ -147,6 +164,68 @@ body {
     display: flex;
   }
 }
+.login-options {
+  position: absolute;
+  top: 50px;
+  z-index: 300;
+  background-color: #476730;
+  box-shadow: 2px 3px 10px rgba(0, 0, 0, 0.3);
+  width: 100px;
+  padding: 14px 8px 14px 10px;
+  border-radius: 6px;
+  opacity: 0;
+  transition: opacity 0.15s;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+}
+
+.login-link {
+  height: 35px;
+  display: flex;
+  align-items: center;
+}
+
+.login-link:hover .login-options {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.login-options:hover {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+
+.admin-option-login {
+  width: 100%;
+  padding-bottom: 10px;
+  border-bottom: solid;
+}
+
+.teacher-option-login {
+  width: 100%;
+  padding-top: 10px;
+}
+
+.admin-option-login,
+.teacher-option-login,
+.admin-link-login,
+.teacher-link-login {
+  color: #F9FAEF;
+  text-decoration: none;
+}
+
+.admin-option-login:hover,
+.teacher-link:hover {
+  color: rgb(212, 212, 212);
+}
+
+.admin-link-login:active,
+.teacher-link-login:active {
+  color: rgb(180, 180, 180);
+}
+
 
 /* MATERIAL UI FIXES */
 

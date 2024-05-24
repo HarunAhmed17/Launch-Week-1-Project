@@ -30,6 +30,8 @@ export const Dashboard = () => {
         }
     };
 
+    
+
 
     useEffect(() => {
         document.title = "Dashboard";
@@ -88,7 +90,7 @@ export const Dashboard = () => {
             <div className="classOutline">
                 {classes.map((dashboardClass) => (
                     <div key={dashboardClass.id} className="dashboardClass" style={{'--box-color': dashboardClass.color}}> 
-                        <Link key={dashboardClass.subject} to={`/class/${dashboardClass.subject}`}>
+                        <Link style={{color: dashboardClass.color}} key={dashboardClass.subject} to={`/class/${dashboardClass.subject}`}>
                             {console.log(typeof dashboardClass.subject)}
                             <hr className="line" />
                             <h4 style={{color: dashboardClass.color}}> {dashboardClass.subject} </h4>
